@@ -16,55 +16,32 @@ async function fetchMovie() {
     options
   );
   const jsonData = await response.json(); // jsonData.results - 영화모음[배열]
-  // 영화모음(배열)을 순회하며 각 영화의 정보로 카드 만들기
-  // console.log(jsonData)
-  jsonData.results.forEach((movie) => {
-    createCard(movie);
-  });
+  // 영화모음(배열)을 순회하며 각 영화의 정보로 카드 만들어 ul(class = flex-container)에 붙이기
+  const list = document.querySelector(".flex-container");
+  list.innerHTML = jsonData.results
+    .map(
+      (movie) => `
+    <li class="card" id="${movie.id}">
+      <img id="img" src="https://image.tmdb.org/t/p/w500/${movie.poster_path}">
+      <h4 id="title">${movie.title}</h4>
+      <p id="content">${movie.overview}</p>
+      <p id="average">${movie.average}</p>
+    </li>
+  `
+    )
+    .join(""); // 배열의 모든 요소를 문자열로 연결하여 반환
+
+  // 카드 눌렀을 때 영화 id 경고창으로 띄우기
   alertCard(jsonData);
 }
-// 카드 눌렀을 때 영화 id 경고창으로 띄우기
+
 function alertCard(jsonData) {
   const card = document.getElementsByClassName("card");
-  let arrc = Object.keys(card).map((el) => card[el]);
+  const arrc = Object.keys(card).map((el) => card[el]);
   arrc.forEach((element, index) => {
-    let movieID = jsonData.results[index].id;
+    const movieID = jsonData.results[index].id;
     element.addEventListener("click", (element) => {
       alert(`영화 id : ${movieID}`);
     });
   });
-}
-
-// 카드 생성 로직
-function createCard(movie) {
-  let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-  let title = movie.original_title;
-  let content = movie.overview;
-  let average = movie.vote_average;
-  let id = movie.id;
-  // 영화 카드 만들기
-  let addCard = document.createElement("li");
-  let addImg = document.createElement("img");
-  let addTitle = document.createElement("h4");
-  let addContent = document.createElement("p");
-  let addAverage = document.createElement("p");
-  // 부모-자식 관계 설정
-  addCard.appendChild(addImg);
-  addCard.appendChild(addTitle);
-  addCard.appendChild(addContent);
-  addCard.appendChild(addAverage);
-  // 노드 속성 설정
-  addCard.setAttribute("class", "card");
-  addCard.setAttribute("id", `${id}`);
-  addImg.setAttribute("id", "img");
-  addTitle.setAttribute("id", "title");
-  addContent.setAttribute("id", "content");
-  addAverage.setAttribute("id", "average");
-  // 카드 붙여주기
-  document.querySelector(".flex-container").append(addCard);
-  // 영화 정보 채우기
-  addImg.src = poster;
-  addTitle.textContent = title;
-  addContent.textContent = content;
-  addAverage.textContent = average;
 }
