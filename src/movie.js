@@ -25,7 +25,7 @@ async function fetchMovie() {
       <img id="img" src="https://image.tmdb.org/t/p/w500/${movie.poster_path}">
       <h4 id="title">${movie.title}</h4>
       <p id="content">${movie.overview}</p>
-      <p id="average">${movie.average}</p>
+      <p id="average">${movie.vote_average}</p>
     </li>
   `
     )
