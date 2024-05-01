@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
+* {
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* flex 사용 */
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+}
+
+#header {
+  width: 24rem;
+  border-radius: 2rem;
+  background-color: #d3ac2b;
+  text-align: center;
+  margin: 0 auto 0 auto;
+}
+
+body {
+  background-color: #57648c;
+}
+/* 넓이 지정을 통해 한줄당 나열될 카드 수 지정 */
+.card {
+  width: 18rem;
+  height: 45rem;
+  padding: 0, auto, 0, auto;
+  margin: 1rem;
+  text-align: center;
+  background-color: #938866;
+  border-radius: 2rem;
+  list-style-type: none;
+}
+
+#img {
+  width: 70%;
+  height: 18rem;
+  border-radius: 2rem;
+  margin-top: 1rem;
+}
+
+#box {
+  padding: 1rem 0 1rem 0;
+}
+
+#mainTitle {
+  margin: 0 auto 0 auto;
+  padding-top: 1rem;
+}
+
+#content {
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+#none {
+  display: none;
+}
