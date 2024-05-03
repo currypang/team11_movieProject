@@ -15,12 +15,19 @@
   align-content: center;
 }
 
-#header {
-  width: 24rem;
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+  height: 8vw;
   border-radius: 2rem;
   background-color: #d3ac2b;
-  text-align: center;
   margin: 0 auto 0 auto;
+}
+header > #main-title > span:hover {
+  cursor: pointer;
 }
 
 body {
@@ -29,8 +36,6 @@ body {
 /* 넓이 지정을 통해 한줄당 나열될 카드 수 지정 */
 .card {
   width: 18rem;
-  height: 45rem;
-  padding: 0, auto, 0, auto;
   margin: 1rem;
   text-align: center;
   background-color: #938866;
@@ -38,18 +43,48 @@ body {
   list-style-type: none;
 }
 
-#img {
-  width: 70%;
-  height: 18rem;
+.image-box img {
+  width: 90%;
   border-radius: 2rem;
   margin-top: 1rem;
 }
 
-#box {
-  padding: 1rem 0 1rem 0;
+/* navigation bar */
+nav {
+  width: 90%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#search-form {
+  display: flex;
+  gap: 10px;
+}
+#search-option {
+  height: 28px;
+  border-radius: 5px;
+  border-width: 1px;
+  padding-left: 10px;
+}
+#search-input {
+  width: 250px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+#search-input::placeholder {
+  color: rgb(158, 158, 158);
+}
+#search-button {
+  width: 40px;
+  height: 28px;
+  border-radius: 5px;
+  border-width: 1px;
 }
 
-#mainTitle {
+#main-title {
   margin: 0 auto 0 auto;
   padding-top: 1rem;
 }

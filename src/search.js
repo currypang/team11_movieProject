@@ -1,22 +1,58 @@
-export { searchHandler };
-// 검색 로직
-function searchHandler(event) {
-  // 새로고침 방지
-  event.preventDefault();
-  const text = document.getElementById("input").value.toUpperCase();
-  const movieCard = document.getElementsByTagName("li");
-  // 배열메서드 사용위해 유사배열을 배열로 변환
-  const arrayCard = Object.keys(movieCard).map((el) => movieCard[el]);
+export { searchMovies };
 
-  // foreach 매서드를 사용해 카드 탐색
-  arrayCard.forEach((element, index) => {
-    const movTitle = element.children[1].innerText.toUpperCase();
-    // 검색창의 값과 영화카드의 제목이 같지 않으면 css를 통해 카드를 숨기는 id를 부여 - 바로 style을 바꾸는 방법도 가능
-    if (!movTitle.includes(text)) {
-      movieCard[index].id = "none";
-      // 검색창의 값이 제목에 포함되었다면 id부여를 통해 숨김해제 - 재검색때 필요
-    } else {
-      movieCard[index].id = "block";
-    }
-  });
+// 영화 검색 함수
+function searchMovies(fetchedMovies, fetchedCredits) {
+  //검색옵션과 검색창 각각 할당해주기
+  let searchOption = document.getElementById("search-option");
+  let searchInput = document.getElementById("search-input");
+  //검색어(검색창에 입력된 글자)가 non-empty일 때만 실행
+  if (searchInput.value !== "") {
+    //검색어의 모든 알파벳을 소문자로 변환
+    const loweredSearching = searchInput.value.toLowerCase();
+
+    fetchedMovies.forEach((movie) => {
+      // 영화 id로 해당 카드 찾아내기
+      const card = document.getElementById(movie.id);
+      //title
+      if (searchOption.selectedIndex === 0) {
+        const loweredTitle = movie.title.toLowerCase();
+        showAndHide(card, loweredTitle.includes(loweredSearching));
+      }
+      //overview
+      else if (searchOption.selectedIndex === 1) {
+        const loweredOverview = movie.overview.toLowerCase();
+        showAndHide(card, loweredOverview.includes(loweredSearching));
+      }
+      //director
+      else if (searchOption.selectedIndex === 2) {
+        const credit = fetchedCredits.find((credit) => credit.id === movie.id);
+        const loweredName = credit.director.name.toLowerCase();
+        showAndHide(card, loweredName.includes(loweredSearching));
+      }
+      //cast
+      else if (searchOption.selectedIndex === 3) {
+        const credit = fetchedCredits.find((credit) => credit.id === movie.id);
+        const matchedCast = credit.cast.find((cast) => cast.name.toLowerCase().includes(loweredSearching));
+        showAndHide(card, matchedCast !== undefined);
+      }
+    });
+    // 검색어가 공백이면
+  } else if (searchInput.value === "") {
+    //토스트 메시지 띄우기
+    toastMsg();
+    //입력창에 focus 시키기
+    searchInput.focus();
+  } else {
+    // do nothing
+  }
+}
+//
+function showAndHide(card, isMatched) {
+  if (isMatched) {
+    // 검색어가 포함된 영화라면 카드를 보이도록 설정
+    card.style.display = "block";
+  } else {
+    // 검색어가 포함되지 않은 영화라면 카드를 숨기도록 설정
+    card.style.display = "none";
+  }
 }

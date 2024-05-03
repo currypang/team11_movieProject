@@ -9,14 +9,28 @@
   </head>
 
   <body>
-    <header id="header">
-      <h1 id="mainTitle">최고의 영화 평점</h1>
-      <form id="box">
-        <span id="label">영화 검색 : </span>
-        <input id="input" type="text" />
-        <button id="btn" type="button">검색</button>
-      </form>
+    <header>
+      <h1 id="main-title">
+        <span>D<span style="color: red">IVE</span> TO MOVIES</span>
+      </h1>
+      <nav>
+        <form id="search-form">
+          <select id="search-option">
+            <option value="title">title</option>
+            <option value="overview">ovierview</option>
+            <option value="director">director</option>
+            <option value="cast">cast</option>
+          </select>
+          <input type="text" id="search-input" placeholder="검색어를 입력하세요" autofocus />
+          <button type="submit" id="search-button">검색</button>
+        </form>
+      </nav>
     </header>
-    <ul class="flex-container"></ul>
+    <main>
+      <ul class="flex-container" id="now-playing"></ul>
+      <ul class="flex-container" id="popular"></ul>
+      <ul class="flex-container" id="top-rated"></ul>
+      <ul class="flex-container" id="upcoming"></ul>
+    </main>
   </body>
 </html>
