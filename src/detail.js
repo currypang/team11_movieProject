@@ -7,24 +7,45 @@ const options = {
   },
 };
 
+function setMovieDetail(movieData){
+  console.log(movieData);
+  // input center movie data
+  document.querySelector(".movie-img").setAttribute("style",`background-image: url("https://image.tmdb.org/t/p/w500/${movieData.poster_path}"); height: 90%; aspect-ratio: 2/3;`)
+  document.querySelector(".movie-title").textContent=movieData.title
+  document.querySelector(".movie-release-date").textContent=movieData.release_date
+
+  // issue : given genre data doesn't displayed
+  document.querySelector(".movie-genre").textContent=movieData.genres.map((el)=>el.name+" ");
+  document.querySelector(".movie-star").textContent=movieData.vote_average
+  document.querySelector(".movie-overview").textContent=movieData.overview
+
+}
+
 function getSubMovie() {
   const url = window.location.href; // window.location.href => http://127.0.0.1:5500/sub_page.html?value=238
-  const movieID = Number(url.split("=").pop()); // 238
+  
+  // case 1 get movie id by url
+  // const movieID = Number(url.split("=").pop()); // 238
+  
+  // case 2 get movie id by local storage
+  const movieID = sessionStorage.getItem("MOVIE_ID");
   console.log(movieID);
-
   fetch(`https://api.themoviedb.org/3/movie/${movieID}?language=en-US`, options)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      let title = data.title;
-      let img = data.poster_path;
-
-      console.log(data.title);
-      console.log(data.poster_path);
+      
+      setMovieDetail(data);
       // 제목 불러오기 테스트
-      let detailTitle = document.getElementById("test");
-      detailTitle.textContent = `${title}`;
+      
     })
     .catch((err) => console.error(err));
 }
+
+function setHomeBtn(){
+  document.getElementById("home-btn-id").addEventListener("click",function(){
+    window.location.href='./index.html'
+  })
+}
+
+setHomeBtn();
 getSubMovie();

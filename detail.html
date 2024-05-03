@@ -3,10 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>detail</title>
+    <title>상세 페이지</title>
     <script type="module" src="./src/detail.js"></script>
+    <link rel="stylesheet" href="./style/detail.css" />
   </head>
   <body>
-    <div id="test"></div>
+    <div>
+      <div class="top flex-container">
+        <button id="home-btn-id" class = "home-btn-class">HOME</button>
+      </div>
+      <div class="center flex-container">
+        <div id = 'movie-poster' class="movie-poster flex-container">
+          <div class="movie-img">
+          </div>
+        </div>
+        <div>
+          <div>
+            <div class="movie-title"></div>
+            <div class="flex-container">
+              <div class="movie-release-date"></div>
+              <img class="movie-genre" style="padding : 0 1vw;"></img>
+            </div>
+          </div>
+          <div class="movie-star" style="padding:1vh 0;"></div>
+          <div class="movie-overview"></div>
+        </div>
+      </div>
+      <div class="bottom ">
+      </div>
+    </div>
   </body>
 </html>

@@ -41,7 +41,8 @@ function alertCard(jsonData) {
   arrc.forEach((element, index) => {
     const movieID = jsonData.results[index].id;
     element.addEventListener("click", (element) => {
-      window.location.href = `../detail.html?value=${movieID}`;
+      sessionStorage.setItem("MOVIE_ID",movieID);
+      window.location.href = `./detail.html`;
     });
   });
 }
