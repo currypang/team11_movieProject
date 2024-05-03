@@ -6,6 +6,7 @@
     <title>Document</title>
     <script type="module" src="./src/main.js"></script>
     <link rel="stylesheet" href="./style/style.css" />
+    <script type="module" src="./src/sort.js"></script>
   </head>
 
   <body>
@@ -14,6 +15,7 @@
         <span>D<span style="color: red">IVE</span> TO MOVIES</span>
       </h1>
       <nav>
+        <button id="sortTitleUp">제목 정렬</button>
         <form id="search-form">
           <select id="search-option">
             <option value="title">title</option>
@@ -26,6 +28,7 @@
         </form>
       </nav>
     </header>
+
     <main>
       <ul class="flex-container" id="now-playing"></ul>
       <ul class="flex-container" id="popular"></ul>
