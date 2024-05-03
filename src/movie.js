@@ -5,20 +5,16 @@ const options = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NzM1ZmE2ZmQ2MTE3M2I3Nzk2ZmEyNzUyNTNmNDE4NyIsInN1YiI6IjY2MmI0YTc4OWFjNTM1MDExZDhmMmRlMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Vk4yeQ8AiQHmqX_sadQavDK7PIaoriDP50jL6m2DQHM",
-  },
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NzM1ZmE2ZmQ2MTE3M2I3Nzk2ZmEyNzUyNTNmNDE4NyIsInN1YiI6IjY2MmI0YTc4OWFjNTM1MDExZDhmMmRlMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Vk4yeQ8AiQHmqX_sadQavDK7PIaoriDP50jL6m2DQHM"
+  }
 };
 
 // tmdb 데이터 가져오기
 async function fetchMovie() {
-  const response = await fetch(
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
-    options
-  );
+  const response = await fetch("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1", options);
   const jsonData = await response.json(); // jsonData.results - 영화모음[배열]
   // 영화모음(배열)을 순회하며 각 영화의 정보로 카드 만들어 ul(class = flex-container)에 붙이기
   const list = document.querySelector(".flex-container");
-  console.log(list);
   list.innerHTML = jsonData.results
     .map(
       (movie) => `
