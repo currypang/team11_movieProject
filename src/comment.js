@@ -1,8 +1,8 @@
 export { postComment, getComment, deleteComment, reviseComment };
 //   console.log(JSON.parse(storage.paul).text); -> parse 후 가능
 const storage = { ...localStorage };
-console.log(storage);
-console.log(JSON.parse(storage.josh));
+// console.log(storage);
+// console.log(JSON.parse(storage.josh));
 // 리뷰 작성
 function postComment() {
   const text = document.getElementById("input-review").value;
@@ -13,7 +13,7 @@ function postComment() {
     JSON.stringify({
       // 객체를 JSON 문자열로 변환
       text: text,
-      password: password,
+      password: password
     })
   );
   window.location.reload();
@@ -57,7 +57,7 @@ function reviseComment() {
           JSON.stringify({
             // 객체를 JSON 문자열로 변환
             text: text,
-            password: password,
+            password: password
           })
         );
       } else {
