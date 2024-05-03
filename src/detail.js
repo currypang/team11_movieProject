@@ -1,3 +1,10 @@
+import {
+  postComment,
+  getComment,
+  deleteComment,
+  reviseComment,
+} from "./comment.js";
+
 const options = {
   method: "GET",
   headers: {
