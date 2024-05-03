@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>comment test</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script type="module" src="./src/detail.js"></script>
+  </head>
+  <body>
+    <form id="comment-box">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          aria-label="Username"
+          id="input-writer"
+        />
+        <span class="input-group-text"></span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="password"
+          aria-label="Server"
+          id="password"
+          type="password"
+        />
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">With textarea</span>
+        <textarea
+          class="form-control"
+          aria-label="With textarea"
+          id="input-review"
+        ></textarea>
+      </div>
+      <button type="button" class="btn btn-secondary" id="button">
+        댓글 달기
+      </button>
+    </form>
+    <br />
+    <br />
+    <br />
+    <form id="revise-box">
+      <label id="revise-title">리뷰 수정</label>
+      <div>
+        <textarea id="revise-review"></textarea>
+      </div>
+      <br />
+      <span>비번</span> <input id="revise-password" type="password" />
+    </form>
+    <ul id="comment-list"></ul>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
