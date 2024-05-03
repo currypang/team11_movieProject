@@ -7,6 +7,19 @@ const options = {
   },
 };
 
+function makeActorCard(actorData){
+  const actorManager = document.querySelector(".actor-box");
+  
+  actorData.map((actor)=>{
+    let actorCardDiv = document.createElement("div");
+    actorCardDiv.setAttribute("class","actor-card");
+    console.log(`actor name :`+actor.name);
+    actorCardDiv.innerHTML=`<p">${actor.name}</p>`;
+    actorManager.appendChild(actorCardDiv);
+  });
+  
+}
+
 function setMovieDetail(movieData){
   console.log(movieData);
   // input center movie data
@@ -15,10 +28,31 @@ function setMovieDetail(movieData){
   document.querySelector(".movie-release-date").textContent=movieData.release_date
 
   // issue : given genre data doesn't displayed
+  console.log(movieData.genres);
   document.querySelector(".movie-genre").textContent=movieData.genres.map((el)=>el.name+" ");
   document.querySelector(".movie-star").textContent=movieData.vote_average
   document.querySelector(".movie-overview").textContent=movieData.overview
 
+  // movie credits structure
+  /* { 
+    id : movie_id,
+    cast :[ [casting object], [casting object], [casting object] ] ,
+    director : [ director_data object ]
+  } */
+
+  
+  // set actor card
+  let tempData=[
+    {name : "Test Name 1"},
+    {name : "Test Name 2"},
+    {name : "Test Name 3"},
+    {name : "Test Name 3"},
+    {name : "Test Name 3"},
+    {name : "Test Name 3"},
+    {name : "Test Name 3"},
+  ]
+  // need card slider
+  makeActorCard(tempData);
 }
 
 function getSubMovie() {
