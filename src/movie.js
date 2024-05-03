@@ -18,6 +18,7 @@ async function fetchMovie() {
   const jsonData = await response.json(); // jsonData.results - 영화모음[배열]
   // 영화모음(배열)을 순회하며 각 영화의 정보로 카드 만들어 ul(class = flex-container)에 붙이기
   const list = document.querySelector(".flex-container");
+  console.log(list);
   list.innerHTML = jsonData.results
     .map(
       (movie) => `

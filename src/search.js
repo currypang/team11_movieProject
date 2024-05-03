@@ -7,7 +7,6 @@ function searchHandler(event) {
   const movieCard = document.getElementsByTagName("li");
   // 배열메서드 사용위해 유사배열을 배열로 변환
   const arrayCard = Object.keys(movieCard).map((el) => movieCard[el]);
-
   // foreach 매서드를 사용해 카드 탐색
   arrayCard.forEach((element, index) => {
     const movTitle = element.children[1].innerText.toUpperCase();
