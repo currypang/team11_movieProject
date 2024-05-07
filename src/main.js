@@ -2,6 +2,7 @@ import { fetchMovies, fetchCredits } from "./fetch.js";
 import { makeCard } from "./card.js";
 import { searchMovies } from "./search.js";
 import { sortMovie } from "./sort.js";
+import { setupSlideNavigation } from "./slider.js";
 
 // 이벤트 핸들러 생성 함수
 function addEvents(fetchedMovies, fetchedCredits) {
@@ -19,7 +20,7 @@ function addEvents(fetchedMovies, fetchedCredits) {
     searchMovies(fetchedMovies, fetchedCredits);
   });
   // 정렬 버튼 이벤트
-  // document.querySelector(selector) : CSS 선택자를 이용하여 요소를 선택합니다.
+  // document.querySelector(selector) : CSS 선택자를 이용하여 요소를 선택합니다.
   //HTML 문서에서  id #sortTitleUp 요소 선택하여 sortButton1에 할당
   const sortButton1 = document.getElementById("sortTitleUp");
   // 버튼 1번에 이벤트리스턴널
