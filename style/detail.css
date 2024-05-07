@@ -47,5 +47,11 @@
 }
 
 .review-box{
+    padding : 0 1vw;
+    height : 100%;
     background-color: forestgreen;
+}
+
+.review-box-title{
+    padding : 1vh 2vw;
 }
