@@ -30,7 +30,7 @@ function makeCard(fetchedMovies) {
       event.preventDefault();
       //영화 id를 알려주는 알림창을 띄웁니다.
       sessionStorage.setItem("MOVIE_ID",movie.id)
-      alert("영화 ID: " + movie.id);
+      window.location.href = "./detail.html";
     });
   });
 }
