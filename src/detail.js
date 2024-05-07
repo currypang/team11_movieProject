@@ -31,6 +31,7 @@ function setMovieDetail(movieData) {
       "style",
       `background-image: url("https://image.tmdb.org/t/p/w500/${movieData.poster_path}"); height: 90%; aspect-ratio: 2/3;`
     );
+
   document.querySelector(".movie-title").textContent = movieData.title;
   document.querySelector(".movie-release-date").textContent = movieData.release_date;
 

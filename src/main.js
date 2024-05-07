@@ -34,10 +34,15 @@ document.addEventListener(
   "DOMContentLoaded",
   async () => {
     //영화데이터 불러와서 저장
-    const fetchedMovies = await fetchMovies("top_rated"); // fetchMovies() 함수의 비동기 호출을 기다림
-    const fetchedCredits = fetchCredits(fetchedMovies); // fetchCredits() 함수의 비동기 호출을 기다림
+    const nowPlaying = await fetchMovies("now_playing"); // base url 뒤에 들어갈 movie list name 으로 fetch
+    const topRated = await fetchMovies("top_rated");
+    const popular = await fetchMovies("popular");
+    const upcoming = await fetchMovies("upcoming");
     //영화카드 생성
-    makeCard(fetchedMovies);
+    makeCard(nowPlaying, "now-playing"); // fetch된 영화의 카드를 생성할 리스트를 id로 선택
+    makeCard(topRated, "top-rated");
+    makeCard(popular, "popular");
+    makeCard(upcoming, "upcoming");
     //클릭 이벤트를 모두 생성
     addEvents(fetchedMovies, fetchedCredits);
   },
