@@ -10,12 +10,12 @@ const options = {
   }
 };
 
-const url = "https://api.themoviedb.org/3/movie/";
+const baseUrl = "https://api.themoviedb.org/3/movie/";
 
 // 영화 정보 fetch 함수
 async function fetchMovies(listName) {
   //await로 fetch 함수가 영화 데이터를 다 불러올 때까지 기다리고 난뒤, then을 통해 Promise의 response를 json형태로 반환하도록 처리합니다.
-  const response = await fetch(url + listName, options).then((response) => response.json());
+  const response = await fetch(baseUrl + listName, options).then((response) => response.json());
   //response의 json 객체 중에 "results" 라는 key의 value만 저장합니다.
   const fetchedMovies = response.results;
   //fetchedMovies에 저장된 영화 데이터 목록을 반환합니다. (Array type)
@@ -27,7 +27,7 @@ function fetchCredits(fetchedMovies) {
   //반환할 credits 라는 배열을 생성합니다.
   let credits = [];
   fetchedMovies.forEach(async (movie) => {
-    const response = await fetch(url + "/" + movie.id + "/credits", options).then((response) => response.json());
+    const response = await fetch(baseUrl + "/" + movie.id + "/credits", options).then((response) => response.json());
     //response의 json 객체 중에 "cast" 라는 key의 value만 저장합니다.
     const casts = response.cast;
     //response의 json 객체 중에 "crew" 라는 key의 value만 저장합니다.
