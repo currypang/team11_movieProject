@@ -50,7 +50,23 @@ function getComment() {
           <li class="comment" id=${prob}> 
               <div id="text">${parsedData[prob].text}</div>
               <div id="writer">${parsedData[prob].name}</div>
-              <button class="revise" id="revise">수정</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 수정</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <textarea class="modal-body" id="update-text"></textarea>
+                      <input class="update-password" type="password" />
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                      <button type="button" class="btn btn-primary update">저장</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <button type= "submit" class="delete" id="delete">삭제</button>
           </li>
           `;
@@ -64,15 +80,16 @@ function getComment() {
 
 // 리뷰 수정
 function reviseComment() {
-  const reviseButtons = document.getElementsByClassName("revise");
+  const reviseButtons = document.getElementsByClassName("update");
   const arrRevise = Object.keys(reviseButtons).map((el) => reviseButtons[el]);
   arrRevise.forEach((element) => {
     element.addEventListener("click", (e) => {
       // id: <li> tag에 저장한 유저 id 값
-      let id = e.target.parentNode.id;
+      let id = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.id;
+      let password = e.target.parentNode.parentNode.children[2].value;
       const savedPassword = JSON.parse(localStorage.getItem(movieId))[id].password;
-      const text = document.getElementById("revise-review").value;
-      const password = document.getElementById("revise-password").value;
+      const text = document.getElementById("update-text").value;
+      // const password = document.getElementByc("update-password").value;
       // 저장된 비밀번호와 입력한 비밀번호가 같으면 텍스트 수정
       if (savedPassword === password) {
         let currentData = JSON.parse(localStorage.getItem(movieId));
@@ -96,10 +113,16 @@ function deleteComment() {
     element.addEventListener("click", (e) => {
       // 불러온 로컬 스토리지 데이터에서 <li> 태그에 저장된 유저 id의 키값 삭제
       let id = e.target.parentNode.id;
-      delete currentData[id];
-      // 키값 삭제된 로컬스토리지 setItem 메서드로 재생
-      localStorage.setItem(movieId, JSON.stringify(currentData));
-      window.location.reload();
+      const savedPassword = JSON.parse(localStorage.getItem(movieId))[id].password;
+      const passPrompt = prompt("비밀번호를 입력해 주세요", "여기 써 주세요!");
+      if (savedPassword === passPrompt) {
+        delete currentData[id];
+        // // 키값 삭제된 로컬스토리지 setItem 메서드로 재생
+        localStorage.setItem(movieId, JSON.stringify(currentData));
+        window.location.reload();
+      } else {
+        alert("비밀번호가 틀렸습니다.");
+      }
     });
   });
 }
