@@ -83,6 +83,12 @@ nav {
   border-radius: 5px;
   border-width: 1px;
 }
+#sortTitleUp {
+  height: 28px;
+  border-radius: 5px;
+  border-width: 1px;
+  margin-left: 5px;
+}
 
 #main-title {
   margin: 0 auto 0 auto;
