@@ -1,5 +1,5 @@
 export { postComment, getComment, deleteComment, reviseComment };
-//   console.log(JSON.parse(storage.paul).text); -> parse 후 가능
+//   console.log(JSON.parse(storage.paul).text); -> parse 후 사용 가능
 const storage = { ...localStorage };
 const movieId = sessionStorage.getItem("MOVIE_ID");
 
