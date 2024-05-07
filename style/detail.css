@@ -1,0 +1,57 @@
+.flex-container {
+  display: flex;
+  align-content: center;
+}
+
+.home-btn-class {
+  margin: 20px 0;
+}
+
+.top {
+  width: 100vw;
+  padding: 0 2vw;
+  background-color: navy;
+}
+
+.center {
+  background-color: skyblue;
+  width: 100vw;
+  padding: 2vh 2vw;
+  height: 50vh;
+}
+
+.movie-poster {
+  height: 100%;
+  margin: 0 2vw;
+}
+
+.movie-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.actor-box {
+  padding: 0 1vw;
+  height: 100%;
+}
+
+.actor-box-title {
+  padding: 1vh 2vw;
+}
+
+.actor-card {
+  background-color: yellow;
+  margin: 0 2vw;
+  width: 15vw;
+  aspect-ratio: 2/3;
+}
+
+.review-box {
+  padding: 0 1vw;
+  height: 100%;
+  /* background-color: forestgreen; */
+}
+
+.review-box-title {
+  padding: 1vh 2vw;
+}

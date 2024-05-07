@@ -6,6 +6,7 @@
     <title>Document</title>
     <script type="module" src="./src/main.js"></script>
     <link rel="stylesheet" href="./style/style.css" />
+    <script type="module" src="./src/sort.js"></script>
   </head>
   <body>
     <header>
@@ -16,15 +17,17 @@
         <form id="search-form">
           <select id="search-option">
             <option value="title">title</option>
-            <option value="overview">ovierview</option>
+            <option value="overview">overview</option>
             <option value="director">director</option>
             <option value="cast">cast</option>
           </select>
           <input type="text" id="search-input" placeholder="검색어를 입력하세요" autofocus />
           <button type="submit" id="search-button">검색</button>
         </form>
+        <button id="sortTitleUp">제목 정렬</button>
       </nav>
     </header>
+
     <main>
       <h2>Now Playing</h2>
       <div class="movie-container">

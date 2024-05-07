@@ -3,6 +3,7 @@ import { makeCard } from "./card.js";
 import { searchMovies } from "./search.js";
 import { sortMovie } from "./sort.js";
 import { setupSlideNavigation } from "./slider.js";
+
 // 이벤트 핸들러 생성 함수
 function addEvents(fetchedMovies, fetchedCredits) {
   //이벤트 생성해줄 대상을 각각 할당해주기
