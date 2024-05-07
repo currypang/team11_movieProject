@@ -59,7 +59,6 @@ function getComment() {
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <textarea class="modal-body" id="update-text"></textarea>
-                      <input class="update-password" type="password" />
                       <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                       <button type="button" class="btn btn-primary update">저장</button>
@@ -86,12 +85,13 @@ function reviseComment() {
     element.addEventListener("click", (e) => {
       // id: <li> tag에 저장한 유저 id 값
       let id = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.id;
-      let password = e.target.parentNode.parentNode.children[2].value;
+      // let password = e.target.parentNode.parentNode.children[2].value;
       const savedPassword = JSON.parse(localStorage.getItem(movieId))[id].password;
       const text = document.getElementById("update-text").value;
       // const password = document.getElementByc("update-password").value;
       // 저장된 비밀번호와 입력한 비밀번호가 같으면 텍스트 수정
-      if (savedPassword === password) {
+      const passPrompt = prompt("비밀번호를 입력해 주세요", "여기 써 주세요!");
+      if (savedPassword === passPrompt) {
         let currentData = JSON.parse(localStorage.getItem(movieId));
         // 로컬 스토리지에서 불러온 데이터에서 해당 유저의 text만 수정, setItem 메서드로 재생성
         currentData[id].text = text;
