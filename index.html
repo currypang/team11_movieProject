@@ -7,7 +7,6 @@
     <script type="module" src="./src/main.js"></script>
     <link rel="stylesheet" href="./style/style.css" />
   </head>
-
   <body>
     <header>
       <h1 id="main-title">
@@ -27,10 +26,38 @@
       </nav>
     </header>
     <main>
-      <ul class="flex-container" id="now-playing"></ul>
-      <ul class="flex-container" id="popular"></ul>
-      <ul class="flex-container" id="top-rated"></ul>
-      <ul class="flex-container" id="upcoming"></ul>
+      <h2>Now Playing</h2>
+      <div class="movie-container">
+        <ul class="flex-container" id="now-playing"></ul>
+        <div class="arrow">
+          <button class="prev" id="prevNow" disabled="true">prev</button>
+          <button class="next" id="nextNow">next</button>
+        </div>
+      </div>
+      <h2>Popular</h2>
+      <div class="movie-container">
+        <ul class="flex-container" id="popular"></ul>
+        <div class="arrow">
+          <button class="prev" id="prevPopular" disabled="true">prev</button>
+          <button class="next" id="nextPopular">next</button>
+        </div>
+      </div>
+      <h2>Top Rated</h2>
+      <div class="movie-container">
+        <ul class="flex-container" id="top-rated"></ul>
+        <div class="arrow">
+          <button class="prev" id="prevTop" disabled="true">prev</button>
+          <button class="next" id="nextTop">next</button>
+        </div>
+      </div>
+      <h2>Upcoming</h2>
+      <div class="movie-container">
+        <ul class="flex-container" id="upcoming"></ul>
+        <div class="arrow">
+          <button class="prev" id="prevUp" disabled="true">prev</button>
+          <button class="next" id="nextUp">next</button>
+        </div>
+      </div>
     </main>
   </body>
 </html>
