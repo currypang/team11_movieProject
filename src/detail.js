@@ -9,6 +9,7 @@ const options = {
   }
 };
 
+// 영화 배우 카드 생성
 function makeActorCard(actorData) {
   const actorManager = document.querySelector(".actor-box");
 
@@ -38,13 +39,6 @@ function setMovieDetail(movieData) {
   document.querySelector(".movie-genre").textContent = movieData.genres.map((el) => el.name + " ");
   document.querySelector(".movie-star").textContent = movieData.vote_average;
   document.querySelector(".movie-overview").textContent = movieData.overview;
-
-  // movie credits structure
-  /* { 
-    id : movie_id,
-    cast :[ [casting object], [casting object], [casting object] ] ,
-    director : [ director_data object ]
-  } */
 
   // set actor card
   let tempData = [
