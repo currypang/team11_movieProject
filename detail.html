@@ -54,19 +54,31 @@
             <input type="text" class="form-control" placeholder="Username" aria-label="Username" id="input-writer" />
             <span class="input-group-text"></span>
             <input
-              type="text"
               class="form-control"
-              placeholder="password"
+              placeholder="password: 영문 숫자 조합 8자리 이상"
               aria-label="Server"
               id="password"
               type="password"
             />
           </div>
           <div class="input-group">
-            <span class="input-group-text">With textarea</span>
-            <textarea class="form-control" aria-label="With textarea" id="input-review"></textarea>
+            <!-- <span class="input-group-text">With textarea</span> -->
+            <textarea
+              class="form-control"
+              placeholder="리뷰 내용"
+              aria-label="With textarea"
+              id="input-review"
+            ></textarea>
           </div>
-          <button type="button" class="btn btn-secondary" id="button">댓글 달기</button>
+          <select class="form-select" id="star">
+            <option selected>별점선택</option>
+            <option value="⭐">⭐</option>
+            <option value="⭐⭐">⭐⭐</option>
+            <option value="⭐⭐⭐">⭐⭐⭐</option>
+            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+          </select>
+          <button type="button" class="btn btn-secondary" id="button">리뷰 쓰기</button>
         </form>
       </div>
       <ul id="review-list"></ul>

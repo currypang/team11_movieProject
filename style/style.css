@@ -5,14 +5,9 @@
   font-weight: 400;
   font-style: normal;
 }
-/* flex 사용 */
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  align-content: center;
+html {
+  /* 스크롤시 부드럽게 내려감 */
+  scroll-behavior: smooth;
 }
 
 header {
@@ -30,21 +25,76 @@ header > #main-title > span:hover {
   cursor: pointer;
 }
 
+h2 {
+  font-size: 3vw;
+  margin: 2% 0 0 3%;
+}
+
 body {
   background-color: #57648c;
 }
+
+.movie-container {
+  position: relative;
+  width: 88vw;
+  height: 42vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  /* 넘치는 카드 가리기 */
+  overflow: hidden;
+}
+
+/* flex 사용 */
+.flex-container {
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 86vw;
+  padding: 0;
+  /* 가로 정랼 */
+  float: left;
+}
 /* 넓이 지정을 통해 한줄당 나열될 카드 수 지정 */
 .card {
-  width: 18rem;
-  margin: 1rem;
+  width: 18vw;
+  height: 40vh;
+  /* 카드수 수정은 마진으로 */
+  margin: 0 0.6vw;
   text-align: center;
   background-color: #938866;
   border-radius: 2rem;
   list-style-type: none;
+  /* 호버시 작동시간 */
+  transition: all 0.2s;
+}
+.card:hover {
+  /* 호버 확대 */
+  transform: scale(1.1);
+  /* 호버 외각 */
+  border: 2px solid;
+  border-color: rgb(105, 248, 248);
+}
+.arrow {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  bottom: 45%;
+  justify-content: space-between;
+}
+/* 버튼 양쪽에 배치 */
+.prev {
+  float: left;
+}
+.next {
+  float: right;
 }
 
 .image-box img {
-  width: 90%;
+  width: 8vw;
+  height: 27vh;
   border-radius: 2rem;
   margin-top: 1rem;
 }
@@ -82,12 +132,6 @@ nav {
   height: 28px;
   border-radius: 5px;
   border-width: 1px;
-}
-#sortTitleUp {
-  height: 28px;
-  border-radius: 5px;
-  border-width: 1px;
-  margin-left: 5px;
 }
 
 #main-title {
