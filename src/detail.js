@@ -49,7 +49,7 @@ function setMovieDetail() {
     })
   );
   document.querySelector(".movie-genre").textContent = movieGenre; // genre
-  document.querySelector(".movie-star").textContent = movieData.vote_average; // vote average
+  document.querySelector(".movie-rating").textContent = movieData.vote_average; // vote average
   document.querySelector(".movie-overview").textContent = movieData.overview; // overview
   // 감독 정보
   document
