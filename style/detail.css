@@ -55,3 +55,7 @@
 .review-box-title {
   padding: 1vh 2vw;
 }
+
+.comment {
+  list-style-type: none;
+}
