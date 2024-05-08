@@ -60,7 +60,7 @@ function getComment() {
             <div id="text">${parsedData[prob].text}</div>
             <div id="writer">${parsedData[prob].name}</div>
             <div id="review-star">${parsedData[prob].star}</div>
-            <button type="button" class="modi-btn btn btn-primary update-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
+            <button type="button" class="modi-btn btn btn-secondary update-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -68,7 +68,7 @@ function getComment() {
                     <h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 수정</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <textarea class="modal-body" placeholder="리뷰 내용" id="update-text"></textarea>
+                  <textarea class="modal-body modal-text" placeholder="리뷰 내용" id="update-text"></textarea>
                   <select class="form-select" id="update-star">
                     <option selected>별점수정</option>
                     <option value="⭐">⭐</option>
@@ -84,7 +84,7 @@ function getComment() {
                 </div>
               </div>
             </div>
-            <button type= "submit" class="del-btn btn btn-danger delete" id="delete">삭제</button>
+            <button type= "submit" class="del-btn btn btn-secondary delete" id="delete">삭제</button>
           </li>
           `;
     }

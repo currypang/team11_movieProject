@@ -208,3 +208,7 @@ h2 {
 button {
   all: unset;
 }
+
+.modal-text {
+  background-color: white;
+}
