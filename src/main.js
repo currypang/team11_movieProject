@@ -4,11 +4,6 @@ import { searchMovies } from "./search.js";
 import { sortByTitle, sortByRating, sortByDate } from "./sort.js";
 import { listUrls, listIDs } from "./constants.js";
 
-//baseUrl 뒤에 들어갈 movie list names
-const listUrls = ["now_playing", "top_rated", "popular", "upcoming"];
-//html에 4개의 카드 리스트 각각의 id
-const listIDs = ["now-playing", "top-rated", "popular", "upcoming"];
-
 // 이벤트 핸들러 생성 함수
 function addEvents(movieLists, creditLists) {
   //이벤트 생성해줄 대상을 각각 할당해주기
