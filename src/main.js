@@ -4,70 +4,56 @@ import { searchMovies } from "./search.js";
 import { sortMovie } from "./sort.js";
 import { setupSlideNavigation } from "./slider.js";
 
+//baseUrl 뒤에 들어갈 movie list names
+const listUrls = ["now_playing", "top_rated", "popular", "upcoming"];
+//html에 4개의 카드 리스트 각각의 id
+const listIDs = ["now-playing", "top-rated", "popular", "upcoming"];
+
 // 이벤트 핸들러 생성 함수
-function addEvents(fetchedMovies, fetchedCredits) {
+function addEvents(movieLists, creditLists) {
   //이벤트 생성해줄 대상을 각각 할당해주기
-  let pageTitle = document.querySelector("#main-title > span");
-  let searchForm = document.getElementById("search-form");
-  //페이지 타이틀을 클릭했을 때의 이벤트 생성
+  const pageTitle = document.querySelector("#main-title > span");
+  const searchForm = document.getElementById("search-form");
+  const sortButton1 = document.getElementById("sortTitleUp");
+  //페이지 타이틀에 클릭 이벤트 생성
   pageTitle?.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.reload();
   });
-  //검색 버튼을 클릭했을 때의 이벤트 생성
+  //검색 버튼에 클릭 이벤트 생성
   searchForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    searchMovies(fetchedMovies, fetchedCredits);
+    searchMovies(movieLists, creditLists);
   });
-  // 정렬 버튼 이벤트
-  // document.querySelector(selector) : CSS 선택자를 이용하여 요소를 선택합니다.
-  //HTML 문서에서  id #sortTitleUp 요소 선택하여 sortButton1에 할당
-  const sortButton1 = document.getElementById("sortTitleUp");
-  // 버튼 1번에 이벤트리스턴널
-  sortButton1.addEventListener("click", () => {
-    //sessionStorage에 저장된 sortKey를 가져옴
-    let sortKey = sessionStorage.getItem("sortKey");
-    //sortKey가 true면 오름차순 false면 내림차순
-    sortMovie("now-playing", sortKey);
-    sortMovie("top-rated", sortKey);
-    sortMovie("popular", sortKey);
-    sortMovie("upcoming", sortKey);
-    // 논리 부정 연산자를 사용하여 sortKey를 반대로 저장
-    if (sortKey === "ascending") sessionStorage.setItem("sortKey", "descending");
-    else if (sortKey === "descending") sessionStorage.setItem("sortKey", "ascending");
-    else console.log("sortKey의 저장된 값에 오류가 있습니다.");
+  // 정렬 버튼에 클릭 이벤트 생성
+  sortButton1?.addEventListener("click", (event) => {
+    event.preventDefault();
+    //sessionStorage의 "sortKey"라는 key를 가진 저장소에서 오름차순/내림차순에 대한 값을 가져옴
+    const prevSortKey = sessionStorage.getItem("sortKey");
+    //각 영화 리스트 각각을 prevSortKey에 따라 오름차순/내림차순 정렬
+    listIDs.forEach((listID) => sortMovie(listID, prevSortKey));
+    //nextSortKey에 prevSortKey와 반대 값을 할당 ("ascending" <--> "descending")
+    const nextSortKey = prevSortKey === "ascending" ? "descending" : "ascending";
+    //sessionStorage에 저장된 prevSortKey 값을 nextSortKey로 변경 (클릭할 때마다 오름차순/내림차순 번갈아가며 적용하기 위함)
+    sessionStorage.setItem("sortKey", nextSortKey);
   });
 }
 
-// Initialise
-document.addEventListener(
-  //페이지가 로드되고 난 뒤에 실행
-  "DOMContentLoaded",
-  async () => {
-    //영화데이터 불러와서 저장
-    const nowPlaying = await fetchMovies("now_playing"); // base url 뒤에 들어갈 movie list name 으로 fetch
-    const topRated = await fetchMovies("top_rated");
-    const popular = await fetchMovies("popular");
-    const upcoming = await fetchMovies("upcoming");
-    //영화크레딧 불러와서 저장
-    const nowPlayingCredits = fetchCredits(nowPlaying);
-    const topRatedCredits = fetchCredits(topRated);
-    const popularCredits = fetchCredits(popular);
-    const upcomingCredits = fetchCredits(upcoming);
+// 페이지 새로고침 시 실행할 것들을 모아놓은 함수
+async function initialize() {
+  //영화데이터 불러와서 저장
+  const movieLists = await Promise.all(listUrls.map(fetchMovies));
+  //영화크레딧 불러와서 저장
+  const creditLists = await Promise.all(movieLists.map(fetchCredits));
+  //영화카드 생성
+  listIDs.forEach((listID, index) => {
+    makeCard(movieLists[index], listID, creditLists[index]);
+  });
+  //sessionStorage에 저장된 sortKey를 오름차순(ascending order)으로 초기화
+  sessionStorage.setItem("sortKey", "ascending");
+  //클릭 이벤트를 모두 생성
+  addEvents(movieLists, creditLists);
+}
 
-    //영화데이터, 영화크레딧 통합
-    const fetchedMovies = [...nowPlaying, ...topRated, ...popular, ...upcoming];
-    const fetchedCredits = [nowPlayingCredits, topRatedCredits, popularCredits, upcomingCredits];
-
-    //영화카드 생성
-    makeCard(nowPlaying, "now-playing"); // fetch된 영화의 카드를 생성할 리스트를 id로 선택
-    makeCard(topRated, "top-rated");
-    makeCard(popular, "popular");
-    makeCard(upcoming, "upcoming");
-    //sessionStorage에 저장된 sortKey를 "ascending"로 초기화
-    sessionStorage.setItem("sortKey", "ascending");
-    //클릭 이벤트를 모두 생성
-    addEvents(fetchedMovies, fetchedCredits);
-  },
-  false
-);
+//페이지가 로드되고 난 뒤에 실행
+document.addEventListener("DOMContentLoaded", initialize, false);
