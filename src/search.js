@@ -1,12 +1,12 @@
 export { searchMovies };
 
 // 영화 검색 함수
-function searchMovies(fetchedMovies, fetchedCredits) {
+function searchMovies(movieLists, creditLists) {
   //검색옵션과 검색창 각각 할당
   let searchOption = document.getElementById("search-option");
   let searchInput = document.getElementById("search-input");
   //영화 리스트들
-  const movieLists = [
+  const movieCardLists = [
     document.getElementById("now-playing"),
     document.getElementById("top-rated"),
     document.getElementById("popular"),
@@ -18,9 +18,9 @@ function searchMovies(fetchedMovies, fetchedCredits) {
     //검색어를 소문자로 변환
     const loweredSearching = searchInput.value.toLowerCase();
 
-    fetchedMovies.forEach((movie) => {
-      movieLists.forEach((list) => {
-        const card = list.querySelector(`[id="${movie.id}"]`);
+    movieLists.flat().forEach((movie) => {
+      movieCardLists.forEach((cardList) => {
+        const card = cardList.querySelector(`[id="${movie.id}"]`);
         if (card) {
           // 겁색옵션에 따라 검색어를 포함하는 영화가 있는지 여부를 나타내는 "isMatched"라는 변수를 선언 및 false로 초기화
           let isMatched = false;
@@ -34,14 +34,14 @@ function searchMovies(fetchedMovies, fetchedCredits) {
           }
           //검색옵션: director
           else if (searchOption.selectedIndex === 2) {
-            const credit = findCredit(fetchedCredits, movie.id);
+            const credit = findCredit(creditLists, movie.id);
             if (credit) {
               isMatched = credit.director.name.toLowerCase().includes(loweredSearching);
             }
           }
           //검색옵션: cast
           else if (searchOption.selectedIndex === 3) {
-            const credit = findCredit(fetchedCredits, movie.id);
+            const credit = findCredit(creditLists, movie.id);
             if (credit) {
               isMatched = credit.cast.some((actor) => actor.name.toLowerCase().includes(loweredSearching));
             }
@@ -60,8 +60,8 @@ function searchMovies(fetchedMovies, fetchedCredits) {
 }
 
 // 영화 크레딧에서 해당 영화의 크레딧 찾기
-function findCredit(fetchedCredits, movieId) {
-  const creditList = fetchedCredits.find((list) => list.some((credit) => credit.id === movieId));
+function findCredit(creditLists, movieId) {
+  const creditList = creditLists.find((list) => list.some((credit) => credit.id === movieId));
   return creditList ? creditList.find((credit) => credit.id === movieId) : null;
 }
 
