@@ -2,7 +2,7 @@ import { postComment, getComment, deleteComment, reviseComment } from "./comment
 import { genreType, emptyPersonImg } from "./constants.js";
 
 // 인물 카드 생성
-function makeFaceCard(name, position, profile){
+function makeFaceCard(name, position, profile) {
   let cardDiv = document.createElement("div");
   let cardImg = document.createElement("img"); // 배우 사진
   let cardCharName = document.createElement("p"); // 배우 이름
@@ -10,10 +10,7 @@ function makeFaceCard(name, position, profile){
 
   cardDiv.setAttribute("class", "actor-card");
   cardImg.setAttribute("class", "actor-img");
-  cardImg.setAttribute(
-    "src", 
-    profile ? `https://image.tmdb.org/t/p/w500/${profile}` : emptyPersonImg
-  );
+  cardImg.setAttribute("src", profile ? `https://image.tmdb.org/t/p/w500/${profile}` : emptyPersonImg);
   cardCharName.innerHTML = `<p">${position}</p>`;
   cardName.innerHTML = `<p">${name}</p>`;
   cardDiv.appendChild(cardImg);
@@ -26,7 +23,7 @@ function makeFaceCard(name, position, profile){
 function makeActorCard(actorData) {
   const actorManager = document.querySelector(".actor-box");
   actorData?.cast.map((actor) => {
-    actorManager.appendChild(makeFaceCard(actor.name, actor.character,actor.profile_path));
+    actorManager.appendChild(makeFaceCard(actor.name, actor.character, actor.profile_path));
   });
 }
 
@@ -45,13 +42,19 @@ function setMovieDetail() {
   document.querySelector(".movie-title").textContent = movieData.title;
   // 상세 페이지 영화 세부 정보
   document.querySelector(".movie-release-date").textContent = movieData.release_date; // Release date
-  let movieGenre="";
-  movieData.genres.map((el) => genreType.map((genreId)=>{if(genreId.id==el)movieGenre += genreId.name+"  "}));
-  document.querySelector(".movie-genre").textContent = movieGenre;// genre
+  let movieGenre = "";
+  movieData.genres.map((el) =>
+    genreType.map((genreId) => {
+      if (genreId.id == el) movieGenre += genreId.name + "  ";
+    })
+  );
+  document.querySelector(".movie-genre").textContent = movieGenre; // genre
   document.querySelector(".movie-star").textContent = movieData.vote_average; // vote average
   document.querySelector(".movie-overview").textContent = movieData.overview; // overview
   // 감독 정보
-  document.querySelector(".movie-director").appendChild(makeFaceCard(movieData.credits.director.name, "director",movieData.credits.director.profile_path))
+  document
+    .querySelector(".movie-director")
+    .appendChild(makeFaceCard(movieData.credits.director.name, "director", movieData.credits.director.profile_path));
   // 배우 정보
   makeActorCard(movieData.credits);
 }
@@ -63,21 +66,14 @@ function setHomeBtn() {
   });
 }
 
+document.addEventListener("DOMContentLoaded", async () => {
+  setHomeBtn(); // 홈버튼
+  setMovieDetail(); // 영화 상세 정보
 
-document.addEventListener("DOMContentLoaded",
-  async()=>{
-    setHomeBtn(); // 홈버튼
-    setMovieDetail() // 영화 상세 정보
-
-    // 리뷰 컨텐츠
-    const button = document.getElementById("button");
-    button.addEventListener("click", postComment);
-    getComment();
-    reviseComment();
-    deleteComment();
-  }
-);
-
-
-
-
+  // 리뷰 컨텐츠
+  const button = document.getElementById("button");
+  button.addEventListener("click", postComment);
+  getComment();
+  reviseComment();
+  deleteComment();
+});

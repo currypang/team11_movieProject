@@ -2,31 +2,102 @@
 html {
   background-color: black;
   color: white;
+  /* 스크롤시 부드럽게 내려감 */
+  scroll-behavior: smooth;
 }
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   font-style: normal;
 }
-html {
-  /* 스크롤시 부드럽게 내려감 */
-  scroll-behavior: smooth;
-}
 
 header {
   display: flex;
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  width: 90vw;
-  height: 8vw;
   font-size: 11vh;
   margin: 1% auto 5% auto;
   position: relative;
   z-index: 1;
 }
+header > #main-title {
+  margin-left: 5%;
+  padding-top: 2%;
+  margin-bottom: 5%;
+}
 header > #main-title > span:hover {
   cursor: pointer;
+}
+/* navigation bar */
+nav {
+  margin-left: 40vw;
+  width: 90%;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+#search-form {
+  display: flex;
+}
+#search-option {
+  height: 3.43vh;
+  padding-left: 8%;
+  font-size: 15%;
+}
+#search-input {
+  width: 14vw;
+  height: 2.6vh;
+  border: none;
+  padding-left: 3dvb;
+  padding-top: 1%;
+  margin-top: 0.2%;
+}
+#search-input::placeholder {
+  color: rgb(158, 158, 158);
+}
+#search-button {
+  width: 4.8vw;
+  height: 3.53vh;
+  font-size: 18%;
+  padding-left: 4%;
+  background-color: rgb(190, 38, 38);
+}
+.dropdown-container {
+  width: 4.8vw;
+  height: 3.53vh;
+  font-size: 17%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgb(83, 83, 83);
+}
+.dropdown-container > label {
+  margin: 0px auto 0px auto;
+}
+#dropdown-toggle:checked ~ .dropdown-menu {
+  /* 리스트 보이기 */
+  overflow-x: hidden;
+  overflow-y: auto;
+  opacity: 1;
+  max-height: 10vh;
+}
+.dropdown-menu {
+  font-size: 90%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: 2px;
+  background-color: whitesmoke;
+  color: black;
+  gap: 1vw;
+  /* 리스트 안 보이게 하기 */
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: 0.2s;
+  padding: 1px;
 }
 #titleImg {
   position: absolute;
@@ -35,7 +106,10 @@ header > #main-title > span:hover {
   width: 100%;
   height: 50%;
   z-index: 0;
-  opacity: 20%;
+  opacity: 30%;
+}
+main {
+  /* background-color: aqua; */
 }
 h2 {
   font-size: 2.7vw;
@@ -75,7 +149,7 @@ h2 {
   width: 10.2vw;
   height: 34vh;
   /* 카드수 수정은 마진으로 */
-  margin: 0 0.4vw;
+  margin: 0 0.5vw;
   text-align: center;
   border-radius: 0.3%;
   list-style-type: none;
@@ -88,7 +162,13 @@ h2 {
   /* 호버 외각 */
   border: 2px solid;
   border-radius: 6%;
-  border-color: rgb(105, 248, 248);
+  border-color: aqua;
+}
+.image-box img {
+  width: 10.2vw;
+  height: 30vh;
+  border-radius: 0.5vw;
+  /* margin-top: 1rem; */
 }
 .arrow {
   position: absolute;
@@ -99,15 +179,6 @@ h2 {
   font-size: 4vw;
   z-index: 4;
 }
-.prev:hover {
-  opacity: 70%;
-  transform: scale(1.3);
-}
-.next:hover {
-  opacity: 70%;
-  transform: scale(1.3);
-}
-
 /* 버튼 양쪽에 배치 */
 .prev {
   float: left;
@@ -115,59 +186,13 @@ h2 {
 .next {
   float: right;
 }
-
-.image-box img {
-  width: 10.2vw;
-  height: 30vh;
-  border-radius: 0.5vw;
-  /* margin-top: 1rem; */
+.prev:hover {
+  opacity: 70%;
+  transform: scale(1.3);
 }
-
-/* navigation bar */
-nav {
-  margin-left: 40vw;
-  width: 90%;
-  height: 7vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
-}
-#search-form {
-  display: flex;
-  /* gap: ; */
-}
-#search-option {
-  height: 3.43vh;
-  /* border-radius: 5px; */
-  /* border-width: 1; */
-  padding-left: 8%;
-  font-size: 15%;
-}
-#search-input {
-  width: 14vw;
-  height: 2.6vh;
-  border: none;
-  /* border-radius: 5px; */
-  padding-left: 3dvb;
-  padding-top: 1%;
-  margin-top: 0.2%;
-}
-#search-input::placeholder {
-  color: rgb(158, 158, 158);
-}
-#search-button {
-  width: 4.8vw;
-  height: 3.53vh;
-  font-size: 18%;
-  padding-left: 4%;
-  background-color: rgb(190, 38, 38);
-}
-
-#main-title {
-  margin: 0 auto 0 auto;
-  padding-top: 2%;
-  margin-bottom: 5%;
+.next:hover {
+  opacity: 70%;
+  transform: scale(1.3);
 }
 
 #content {
@@ -180,15 +205,6 @@ nav {
 
 #block {
   display: block;
-}
-#sortTitleUp {
-  width: 4vw;
-  height: 3.3vh;
-  font-size: 0.8vw;
-  background-color: white;
-  color: black;
-  margin-bottom: 0.2%;
-  padding-left: 2.4%;
 }
 
 button {

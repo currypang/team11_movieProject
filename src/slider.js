@@ -10,7 +10,7 @@ const setupSlideNavigation = ({ slidesSelector, prevBtnSelector, nextBtnSelector
     // 슬라이드 이동 거리
     slides.style.left = -num * 11.03 + "vw";
     // 슬라이드 속도 설정
-    slides.style.transitionDuration = "0.6s";
+    slides.style.transitionDuration = "0.3s";
     // 슬라이드 애니메이션 타이밍 함수 설정
     slides.style.transitionTimingFunction = "ease-in-out";
     currentIdx = num;
