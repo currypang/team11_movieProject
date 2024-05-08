@@ -1,3 +1,4 @@
+import { listIDs } from "./constants.js";
 export { searchMovies };
 
 // 영화 검색 함수
@@ -6,12 +7,7 @@ function searchMovies(movieLists, creditLists) {
   let searchOption = document.getElementById("search-option");
   let searchInput = document.getElementById("search-input");
   //영화 리스트들
-  const movieCardLists = [
-    document.getElementById("now-playing"),
-    document.getElementById("top-rated"),
-    document.getElementById("popular"),
-    document.getElementById("upcoming")
-  ];
+  const movieCardLists = listIDs.map((listID) => document.getElementById(listID));
 
   //검색어가 비어있는지 확인
   if (searchInput.value !== "") {

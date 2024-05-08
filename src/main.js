@@ -2,12 +2,7 @@ import { fetchMovies, fetchCredits } from "./fetch.js";
 import { makeCard } from "./card.js";
 import { searchMovies } from "./search.js";
 import { sortMovie } from "./sort.js";
-import { setupSlideNavigation } from "./slider.js";
-
-//baseUrl 뒤에 들어갈 movie list names
-const listUrls = ["now_playing", "top_rated", "popular", "upcoming"];
-//html에 4개의 카드 리스트 각각의 id
-const listIDs = ["now-playing", "top-rated", "popular", "upcoming"];
+import { listUrls, listIDs } from "./constants.js";
 
 // 이벤트 핸들러 생성 함수
 function addEvents(movieLists, creditLists) {
