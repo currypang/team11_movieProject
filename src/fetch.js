@@ -1,16 +1,5 @@
+import { options, baseUrl } from "./constants.js";
 export { fetchMovies, fetchCredits };
-
-// option for fetching movie data using TMDB's open API
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZTczMGIyZmQyNTAzYjM2ZWI4ZjFlNzEyYTg3MGJmNyIsInN1YiI6IjY2MjY0YTRkMmUyYjJjMDE4NzY4YmIwOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.juGftcAcZYfpUAIkI_0vyyur1hz2VtQez05Th_g5ZnQ"
-  }
-};
-
-const baseUrl = "https://api.themoviedb.org/3/movie/";
 
 // 영화 정보 fetch 함수
 async function fetchMovies(listName) {

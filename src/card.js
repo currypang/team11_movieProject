@@ -1,7 +1,7 @@
 export { makeCard };
 
 // 영화카드 생성 함수
-function makeCard(fetchedMovies, listID, fetchCredits) {
+function makeCard(fetchedMovies, listID, fetchedCredits) {
   //DOM에서 영화 카드를 생성할 리스트 중에 id=listID 인 <ul> 을 선택합니다.
   const movieList = document.getElementById(listID);
   //매개변수로 받은 fetchedMovies라는 영화 목록 array를 탐색합니다.
@@ -24,21 +24,22 @@ function makeCard(fetchedMovies, listID, fetchCredits) {
     //<li>에 클릭 이벤트 핸들러를 부여합니다.
     movieCard?.addEventListener("click", (event) => {
       event.preventDefault();
-      let credits=[];
-      fetchCredits?.map((ele)=>{
-        if(ele.id == movie.id) credits=ele;
-      })
+      //find a credit that is matched with the clicked movie card
+      const credit = fetchedCredits.find((credit) => credit.id === movie.id);
       // Target movie data 전송
-      sessionStorage.setItem("MOVIE_ID",movie.id);
-      sessionStorage.setItem("TARGET_MOVIE_DATA", JSON.stringify({
-        title : movie.title,
-        poster_path : movie.poster_path,
-        release_date : movie.release_date,
-        genres : movie.genre_ids,
-        vote_average : movie.vote_average,
-        overview : movie.overview,
-        credits: credits
-      }));
+      sessionStorage.setItem("MOVIE_ID", movie.id);
+      sessionStorage.setItem(
+        "TARGET_MOVIE_DATA",
+        JSON.stringify({
+          title: movie.title,
+          poster_path: movie.poster_path,
+          release_date: movie.release_date,
+          genres: movie.genre_ids,
+          vote_average: movie.vote_average,
+          overview: movie.overview,
+          credits: credit
+        })
+      );
       // Detail 페이지 이동
       window.location.href = "./detail.html";
     });
