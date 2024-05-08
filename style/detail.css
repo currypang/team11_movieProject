@@ -41,9 +41,14 @@
 
 .actor-card {
   background-color: yellow;
+  font-size: 1vw;
   margin: 0 2vw;
   width: 15vw;
+}
+
+.actor-img{
   aspect-ratio: 2/3;
+  width:10vw;
 }
 
 .review-box {
