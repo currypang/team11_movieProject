@@ -29,7 +29,7 @@ function addEvents(movieLists, creditLists) {
     //sessionStorage의 "sortKey"라는 key를 가진 저장소에서 오름차순/내림차순에 대한 값을 가져옴
     const prevSortKey = sessionStorage.getItem("sortKey");
     //각 영화 리스트 각각을 prevSortKey에 따라 오름차순/내림차순 정렬
-    listIDs.forEach((listID) => sortByTitle(listID, prevSortKey));
+    listIDs.forEach((listID, index) => sortByTitle(movieLists[index], creditLists[index], listID, prevSortKey));
     //nextSortKey에 prevSortKey와 반대 값을 할당 ("ascending" <--> "descending")
     const nextSortKey = prevSortKey === "ascending" ? "descending" : "ascending";
     //sessionStorage에 저장된 prevSortKey 값을 nextSortKey로 변경 (클릭할 때마다 오름차순/내림차순 번갈아가며 적용하기 위함)
