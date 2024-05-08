@@ -1,6 +1,35 @@
 import { postComment, getComment, deleteComment, reviseComment } from "./comment.js";
 import { genreType, emptyPersonImg } from "./constants.js";
 
+// Actor 카드 Drag scroll
+function cardDrager(){
+  const slider = document.querySelector('.actor-box');
+  console.log(slider);
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.addEventListener('mousedown', e=>{
+      isDown=true;
+      slider.classList.add('active');
+  });
+
+  slider.addEventListener('mouseleave',()=>{
+      isDown=false;
+      slider.classList.remove('active');
+  });
+
+  slider.addEventListener('mouseup',()=>{
+      isDown=false;
+      slider.classList.remove('active');
+  });
+
+  slider.addEventListener('mousemove',e=>{
+      if(!isDown) return;
+  })
+}
+
+
 // 인물 카드 생성
 function makeFaceCard(name, position, profile) {
   let cardDiv = document.createElement("div");
@@ -10,6 +39,8 @@ function makeFaceCard(name, position, profile) {
 
   cardDiv.setAttribute("class", "actor-card");
   cardImg.setAttribute("class", "actor-img");
+  cardCharName.setAttribute("class", "actor-char-name");
+  cardName.setAttribute("class", "actor-name");
   cardImg.setAttribute("src", profile ? `https://image.tmdb.org/t/p/w500/${profile}` : emptyPersonImg);
   cardCharName.innerHTML = `<p">${position}</p>`;
   cardName.innerHTML = `<p">${name}</p>`;

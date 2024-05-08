@@ -60,7 +60,7 @@ function getComment() {
             <div id="text">${parsedData[prob].text}</div>
             <div id="writer">${parsedData[prob].name}</div>
             <div id="review-star">${parsedData[prob].star}</div>
-            <button type="button" class="btn btn-primary update-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
+            <button type="button" class="modi-btn btn btn-primary update-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -84,7 +84,7 @@ function getComment() {
                 </div>
               </div>
             </div>
-            <button type= "submit" class="delete" id="delete">삭제</button>
+            <button type= "submit" class="del-btn btn btn-danger delete" id="delete">삭제</button>
           </li>
           `;
     }
