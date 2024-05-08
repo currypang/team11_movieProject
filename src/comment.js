@@ -117,9 +117,12 @@ function reviseComment() {
             let currentData = JSON.parse(localStorage.getItem(movieId));
             const text = document.getElementById("update-text").value;
             const star = document.getElementById("update-star").value;
-            if (star !== "별점수정") {
+            // 텍스트만 수정시 처리
+            if (star !== "별점수정" && text) {
               // 로컬 스토리지에서 불러온 데이터에서 해당 유저의 text,별점 수정, setItem 메서드로 재생성
               currentData[id].text = text;
+              currentData[id].star = star;
+            } else if (star !== "별점수정" && !text) {
               currentData[id].star = star;
             } else {
               currentData[id].text = text;
