@@ -1,30 +1,39 @@
 import { postComment, getComment, deleteComment, reviseComment } from "./comment.js";
+import { genreType, emptyPersonImg } from "./constants.js";
 
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NzM1ZmE2ZmQ2MTE3M2I3Nzk2ZmEyNzUyNTNmNDE4NyIsInN1YiI6IjY2MmI0YTc4OWFjNTM1MDExZDhmMmRlMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Vk4yeQ8AiQHmqX_sadQavDK7PIaoriDP50jL6m2DQHM"
-  }
-};
+// 인물 카드 생성
+function makeFaceCard(name, position, profile){
+  let cardDiv = document.createElement("div");
+  let cardImg = document.createElement("img"); // 배우 사진
+  let cardCharName = document.createElement("p"); // 배우 이름
+  let cardName = document.createElement("p"); // 배우 이름
 
-// 영화 배우 카드 생성
+  cardDiv.setAttribute("class", "actor-card");
+  cardImg.setAttribute("class", "actor-img");
+  cardImg.setAttribute(
+    "src", 
+    profile ? `https://image.tmdb.org/t/p/w500/${profile}` : emptyPersonImg
+  );
+  cardCharName.innerHTML = `<p">${position}</p>`;
+  cardName.innerHTML = `<p">${name}</p>`;
+  cardDiv.appendChild(cardImg);
+  cardDiv.appendChild(cardCharName);
+  cardDiv.appendChild(cardName);
+  return cardDiv;
+}
+
+// 인물 리스트 생성
 function makeActorCard(actorData) {
   const actorManager = document.querySelector(".actor-box");
-
-  actorData.map((actor) => {
-    let actorCardDiv = document.createElement("div");
-    actorCardDiv.setAttribute("class", "actor-card");
-    console.log(`actor name :` + actor.name);
-    actorCardDiv.innerHTML = `<p">${actor.name}</p>`;
-    actorManager.appendChild(actorCardDiv);
+  actorData?.cast.map((actor) => {
+    actorManager.appendChild(makeFaceCard(actor.name, actor.character,actor.profile_path));
   });
 }
 
-function setMovieDetail(movieData) {
-  console.log(movieData);
+// 영화 상세 정보 기입
+function setMovieDetail() {
   // input center movie data
+  let movieData = JSON.parse(sessionStorage.getItem("TARGET_MOVIE_DATA"));
   document
     .querySelector(".movie-img")
     .setAttribute(
@@ -32,58 +41,43 @@ function setMovieDetail(movieData) {
       `background-image: url("https://image.tmdb.org/t/p/w500/${movieData.poster_path}"); height: 90%; aspect-ratio: 2/3;`
     );
 
+  // 상세 페이지 영화 제목
   document.querySelector(".movie-title").textContent = movieData.title;
-  document.querySelector(".movie-release-date").textContent = movieData.release_date;
-
-  // issue : given genre data doesn't displayed
-  console.log(movieData.genres);
-  document.querySelector(".movie-genre").textContent = movieData.genres.map((el) => el.name + " ");
-  document.querySelector(".movie-star").textContent = movieData.vote_average;
-  document.querySelector(".movie-overview").textContent = movieData.overview;
-
-  // set actor card
-  let tempData = [
-    { name: "Test Name 1" },
-    { name: "Test Name 2" },
-    { name: "Test Name 3" },
-    { name: "Test Name 3" },
-    { name: "Test Name 3" },
-    { name: "Test Name 3" },
-    { name: "Test Name 3" }
-  ];
-  // need card slider
-  makeActorCard(tempData);
+  // 상세 페이지 영화 세부 정보
+  document.querySelector(".movie-release-date").textContent = movieData.release_date; // Release date
+  let movieGenre="";
+  movieData.genres.map((el) => genreType.map((genreId)=>{if(genreId.id==el)movieGenre += genreId.name+"  "}));
+  document.querySelector(".movie-genre").textContent = movieGenre;// genre
+  document.querySelector(".movie-star").textContent = movieData.vote_average; // vote average
+  document.querySelector(".movie-overview").textContent = movieData.overview; // overview
+  // 감독 정보
+  document.querySelector(".movie-director").appendChild(makeFaceCard(movieData.credits.director.name, "director",movieData.credits.director.profile_path))
+  // 배우 정보
+  makeActorCard(movieData.credits);
 }
 
-function getSubMovie() {
-  const url = window.location.href; // window.location.href => http://127.0.0.1:5500/sub_page.html?value=238
-
-  // case 1 get movie id by url
-  // const movieID = Number(url.split("=").pop()); // 238
-
-  // case 2 get movie id by local storage
-  const movieID = sessionStorage.getItem("MOVIE_ID");
-  console.log(movieID);
-  fetch(`https://api.themoviedb.org/3/movie/${movieID}?language=en-US`, options)
-    .then((response) => response.json())
-    .then((data) => {
-      setMovieDetail(data);
-      // 제목 불러오기 테스트
-    })
-    .catch((err) => console.error(err));
-}
-
+// Home 버튼
 function setHomeBtn() {
   document.getElementById("home-btn-id").addEventListener("click", function () {
     window.location.href = "./index.html";
   });
 }
 
-setHomeBtn();
-getSubMovie();
 
-const button = document.getElementById("button");
-button.addEventListener("click", postComment);
-getComment();
-reviseComment();
-deleteComment();
+document.addEventListener("DOMContentLoaded",
+  async()=>{
+    setHomeBtn(); // 홈버튼
+    setMovieDetail() // 영화 상세 정보
+
+    // 리뷰 컨텐츠
+    const button = document.getElementById("button");
+    button.addEventListener("click", postComment);
+    getComment();
+    reviseComment();
+    deleteComment();
+  }
+);
+
+
+
+
