@@ -47,7 +47,7 @@ async function initialize() {
   const creditLists = await Promise.all(movieLists.map(fetchCredits));
   //영화카드 생성
   listIDs.forEach((listID, index) => {
-    makeCard(movieLists[index], listID);
+    makeCard(movieLists[index], listID, creditLists[index]);
   });
   //sessionStorage에 저장된 sortKey를 오름차순(ascending order)으로 초기화
   sessionStorage.setItem("sortKey", "ascending");
