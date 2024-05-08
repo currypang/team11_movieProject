@@ -1,6 +1,35 @@
 import { postComment, getComment, deleteComment, reviseComment } from "./comment.js";
 import { genreType, emptyPersonImg } from "./constants.js";
 
+// Actor 카드 Drag scroll
+function cardDrager(){
+  const slider = document.querySelector('.actor-box');
+  console.log(slider);
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.addEventListener('mousedown', e=>{
+      isDown=true;
+      slider.classList.add('active');
+  });
+
+  slider.addEventListener('mouseleave',()=>{
+      isDown=false;
+      slider.classList.remove('active');
+  });
+
+  slider.addEventListener('mouseup',()=>{
+      isDown=false;
+      slider.classList.remove('active');
+  });
+
+  slider.addEventListener('mousemove',e=>{
+      if(!isDown) return;
+  })
+}
+
+
 // 인물 카드 생성
 function makeFaceCard(name, position, profile){
   let cardDiv = document.createElement("div");
