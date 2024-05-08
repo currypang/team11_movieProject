@@ -39,6 +39,8 @@ function makeFaceCard(name, position, profile) {
 
   cardDiv.setAttribute("class", "actor-card");
   cardImg.setAttribute("class", "actor-img");
+  cardCharName.setAttribute("class", "actor-char-name");
+  cardName.setAttribute("class", "actor-name");
   cardImg.setAttribute("src", profile ? `https://image.tmdb.org/t/p/w500/${profile}` : emptyPersonImg);
   cardCharName.innerHTML = `<p">${position}</p>`;
   cardName.innerHTML = `<p">${name}</p>`;
