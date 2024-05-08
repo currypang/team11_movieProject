@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DIVE TO MOVIES</title>
     <script type="module" src="./src/main.js"></script>
-    <script type="module" src="./src/sort.js"></script>
+    <script type="module" src="./src/slider.js"></script>
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/style.css" />
   </head>
@@ -26,6 +26,9 @@
           <input type="text" id="search-input" placeholder="검색어를 입력하세요" autofocus />
           <button type="submit" id="search-button">search</button>
         </form>
+        <button id="sortByTitle">제목순</button>
+        <button id="sortByRating">평점순</button>
+        <button id="sortByDate">개봉일순</button>
       </nav>
     </header>
     <img id="titleImg" src="assets/murder.png" />

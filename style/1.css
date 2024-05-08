@@ -7,11 +7,11 @@
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   font-style: normal;
-  background-color: rgb(7, 7, 7);
+  background-color: black;
   color: white;
 }
 .movie-data-top {
-  font-size: 3vw;
+  font-size: 2vw;
 }
 
 .home-btn-class {
@@ -45,21 +45,22 @@
 }
 
 .movie-poster {
-  /* height: 7%; */
+  height: 100%;
+  margin: 0 2vw;
   width: 14vw;
-  height: 40vh;
-  margin: 0 3vw 5% 2%;
-  /* padding-bottom: 10%; */
-  /* position: relative; */
-  /* z-index: 3; */
+  height: 80vh;
+  margin: 0 3vw 5% 1%;
+  padding-bottom: 10%;
+  position: relative;
+  z-index: 3;
 }
 
 .movie-img {
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 3%;
-  /* width: 230px; */
-  /* height: 300px; */
+  width: 15vw;
+  height: 8vh;
 
   /* margin-bottom: 10%; */
 }
@@ -67,28 +68,25 @@
 .actor-box {
   padding: 0 1vw;
   height: 100%;
-  background-color: rgb(7, 7, 7);
+  background-color: black;
 }
 
 .actor-box-title {
   padding: 1vh 2vw;
-  background-color: rgb(7, 7, 7);
+  background-color: black;
   color: white;
+  margin-top: 3%;
   font-size: 2.5vw;
-  top: 30;
-  position: relative;
-  padding: 3% 0 1% 3%;
 }
 
 .actor-card {
   background-color: rgb(255, 255, 255);
   font-size: 1vw;
-  margin: 1vw 2vw;
+  margin: 0 2vw;
   width: 15vw;
-  color: rgb(7, 7, 7);
+  color: black;
   font-size: 1.3vw;
   font-weight: 500;
-  height: 44vh;
 }
 
 .actor-img {
@@ -122,31 +120,3 @@ button {
 .home-btn-class:hover {
   opacity: 90%;
 }
-
-.movie-star {
-  font-size: 2vw;
-}
-.movie-overview {
-  font-size: 1.5vw;
-  padding-top: 1%;
-}
-.comment {
-  background-color: rgb(7, 7, 7);
-}
-#comment-box {
-  background-color: rgb(7, 7, 7);
-}
-/* .row { */
-/* float: left; */
-/* display: flex; */
-/* flex-direction: column; */
-/* width: 45%; */
-/* background-color: black; */
-/* margin: 5% auto; */
-/* } */
-/* .mt-3 { */
-/* background-color: black; */
-/* } */
-/* #review-list { */
-/* float: left; */
-/* } */
