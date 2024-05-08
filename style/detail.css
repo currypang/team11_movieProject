@@ -114,7 +114,7 @@ body {
 }
 
 .review-input-box {
-  padding: 1vh 0;
+  padding: 0.1vh 0;
 }
 
 .review-box-title {
@@ -123,21 +123,23 @@ body {
 }
 
 #review-input {
-  width: 70%;
+  width: 50vw;
 }
 
 .comment-section {
   padding: 1vh 3vw;
   background-color: rgb(7, 7, 7);
 }
-
+#review-list {
+  width: 50vw;
+}
 .comment {
   align-items: center;
-  font-size: 2.5vh;
+  font-size: 2vh;
   display: flex;
   flex-direction: row;
+  padding-top: 1vh;
   padding-bottom: 1vh;
-  width: 70%;
   background-color: #383838;
   margin-bottom: 1vh;
   border-radius: 1vh;
@@ -164,14 +166,12 @@ body {
 
 .modi-btn {
   width: 3vw;
-  /* height: 3vw; */
-  margin: 0.2vw 0.2vw 0px auto;
+  margin: auto 0.2vw auto auto;
 }
 
 .del-btn {
   width: 3vw;
-  /* height: 3vw; */
-  margin: 0.2vw 0.2vw 0px auto;
+  margin: auto 0.2vw auto auto;
 }
 
 button {
