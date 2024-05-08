@@ -60,7 +60,7 @@ function getComment() {
             <div id="text">${parsedData[prob].text}</div>
             <div id="writer">${parsedData[prob].name}</div>
             <div id="review-star">${parsedData[prob].star}</div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
+            <button type="button" class="btn btn-primary update-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -97,29 +97,39 @@ function getComment() {
 
 // 리뷰 수정
 function reviseComment() {
-  const reviseButtons = document.getElementsByClassName("update");
-  const arrRevise = Object.keys(reviseButtons).map((el) => reviseButtons[el]);
-  arrRevise.forEach((element) => {
+  const updateModal = document.getElementsByClassName("update-modal");
+  const arrUpdateModal = Object.keys(updateModal).map((el) => updateModal[el]);
+  arrUpdateModal.forEach((element) => {
     element.addEventListener("click", (e) => {
+      const passPrompt = prompt("비밀번호를 입력해 주세요", "여기 써 주세요!");
       // id: <li> tag에 저장한 유저 id 값
-      let id = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.id;
+      let id = e.target.parentNode.id;
       // let password = e.target.parentNode.parentNode.children[2].value;
       const savedPassword = JSON.parse(localStorage.getItem(movieId))[id].password;
-      const text = document.getElementById("update-text").value;
-      const star = document.getElementById("update-star").value;
+
       // const password = document.getElementByc("update-password").value;
       // 저장된 비밀번호와 입력한 비밀번호가 같으면 텍스트와 별점 수정
-      const passPrompt = prompt("비밀번호를 입력해 주세요", "여기 써 주세요!");
       if (savedPassword === passPrompt) {
-        let currentData = JSON.parse(localStorage.getItem(movieId));
-        // 로컬 스토리지에서 불러온 데이터에서 해당 유저의 text,별점 수정, setItem 메서드로 재생성
-        currentData[id].text = text;
-        currentData[id].star = star;
-        localStorage.setItem(movieId, JSON.stringify(currentData));
+        const reviseButtons = document.getElementsByClassName("update");
+        const arrRevise = Object.keys(reviseButtons).map((el) => reviseButtons[el]);
+        arrRevise.forEach((element) => {
+          element.addEventListener("click", (e) => {
+            let currentData = JSON.parse(localStorage.getItem(movieId));
+            const text = document.getElementById("update-text").value;
+            const star = document.getElementById("update-star").value;
+            // 로컬 스토리지에서 불러온 데이터에서 해당 유저의 text,별점 수정, setItem 메서드로 재생성
+            currentData[id].text = text;
+            currentData[id].star = star;
+            localStorage.setItem(movieId, JSON.stringify(currentData));
+            window.location.reload();
+          });
+        });
       } else {
         alert("비번이 달라요!");
+        let modalContent = document.querySelector(".modal-dialog");
+        modalContent.style.display = "none";
+        window.location.reload();
       }
-      window.location.reload();
     });
   });
 }
