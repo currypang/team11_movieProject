@@ -18,6 +18,8 @@ function makeCard(fetchedMovies, listID, fetchedCredits) {
             <img src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" />
         </figure>
         <h3>${movie.title}</h3>
+        <h3>${movie.vote_average}</h3>
+        <h3>${movie.release_date}</h3>
     `;
     //위에서 만든 innerCard 템플릿을 <li> 속에 넣습니다.
     movieCard.innerHTML += innerCard;
