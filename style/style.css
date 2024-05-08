@@ -108,10 +108,8 @@ nav {
   z-index: 0;
   opacity: 30%;
 }
-main {
-  /* background-color: aqua; */
-}
 h2 {
+  color: rgb(237, 235, 235);
   font-size: 2.7vw;
   margin: 2% 0 0 5%;
   z-index: 3;
