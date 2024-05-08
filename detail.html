@@ -16,26 +16,21 @@
   </head>
   <body>
     <div>
-      <div class="top flex-container">
+      <nav class="top flex-container">
         <button id="home-btn-id" class="home-btn-class">HOME</button>
-      </div>
-      <div class="center flex-container">
-        <div id="movie-poster" class="movie-poster flex-container">
-          <div class="movie-img"></div>
+      </nav>
+      <div class="center-movie">
+        <figure id="movie-poster" class="movie-img"></figure>
+        <div class="movie-data">
+          <p class="movie-title"></p>
+          <p class="movie-release-date"></p>
+          <p class="movie-genre" style="padding: 0 1vw"></p>
+          <p class="movie-rating" style="padding: 1vh 0"></p>
+          <p class="movie-overview"></p>
         </div>
-        <div>
-          <div class="movie-data-top">
-            <div class="movie-title"></div>
-            <div class="flex-container">
-              <div class="movie-release-date"></div>
-              <div class="movie-genre" style="padding: 0 1vw"></div>
-            </div>
-          </div>
-          <div class="movie-star" style="padding: 1vh 0"></div>
-          <div class="movie-overview"></div>
-          <div class="movie-director"></div>
-        </div>
+        <div class="movie-director"></div>
       </div>
+      <div class="center-actor"></div>
       <div class="bottom">
         <section>
           <div class="actor-box-title">ACTOR LIST</div>
