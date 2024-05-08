@@ -1,24 +1,29 @@
 import { postComment, getComment, deleteComment, reviseComment } from "./comment.js";
-import { genreType, emptyActorImg } from "./constants.js";
+import { genreType, emptyPersonImg } from "./constants.js";
 
-// 영화 배우 카드 생성
+// 인물 카드 생성
+function makeFaceCard(name, profile){
+  let cardDiv = document.createElement("div");
+  let cardImg = document.createElement("img"); // 배우 사진
+  let cardName = document.createElement("p"); // 배우 이름
+
+  cardDiv.setAttribute("class", "actor-card");
+  cardImg.setAttribute("class", "actor-img");
+  cardImg.setAttribute(
+    "src", 
+    profile ? `https://image.tmdb.org/t/p/w500/${profile}` : emptyPersonImg
+  );
+  cardName.innerHTML = `<p">${name}</p>`;
+  cardDiv.appendChild(cardImg);
+  cardDiv.appendChild(cardName);
+  return cardDiv;
+}
+
+// 인물 리스트 생성
 function makeActorCard(actorData) {
   const actorManager = document.querySelector(".actor-box");
-  actorData.cast.map((actor) => {
-    let actorCardDiv = document.createElement("div");
-    let actorCardImg = document.createElement("img"); // 배우 사진
-    let actorCardName = document.createElement("p"); // 배우 이름
-
-    actorCardDiv.setAttribute("class", "actor-card");
-    actorCardImg.setAttribute("class", "actor-img");
-    actorCardImg.setAttribute(
-      "src", 
-      actor.profile_path ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}` : emptyActorImg
-    );
-    actorCardName.innerHTML = `<p">${actor.name}</p>`;
-    actorCardDiv.appendChild(actorCardImg);
-    actorCardDiv.appendChild(actorCardName);
-    actorManager.appendChild(actorCardDiv);
+  actorData?.cast.map((actor) => {
+    actorManager.appendChild(makeFaceCard(actor.name, actor.profile_path));
   });
 }
 
@@ -43,7 +48,7 @@ function setMovieDetail() {
   document.querySelector(".movie-star").textContent = movieData.vote_average; // vote average
   document.querySelector(".movie-overview").textContent = movieData.overview; // overview
   // 감독 정보
-  
+  document.querySelector(".movie-director").appendChild(makeFaceCard(movieData.credits.director.name, movieData.credits.director.profile_path))
   // 배우 정보
   makeActorCard(movieData.credits);
 }

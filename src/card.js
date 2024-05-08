@@ -37,7 +37,7 @@ function makeCard(fetchedMovies, listID, fetchCredits) {
         genres : movie.genre_ids,
         vote_average : movie.vote_average,
         overview : movie.overview,
-        credits : credits
+        credits: credits
       }));
       // Detail 페이지 이동
       window.location.href = "./detail.html";
