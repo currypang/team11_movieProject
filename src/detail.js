@@ -2,9 +2,10 @@ import { postComment, getComment, deleteComment, reviseComment } from "./comment
 import { genreType, emptyPersonImg } from "./constants.js";
 
 // 인물 카드 생성
-function makeFaceCard(name, profile){
+function makeFaceCard(name, position, profile){
   let cardDiv = document.createElement("div");
   let cardImg = document.createElement("img"); // 배우 사진
+  let cardCharName = document.createElement("p"); // 배우 이름
   let cardName = document.createElement("p"); // 배우 이름
 
   cardDiv.setAttribute("class", "actor-card");
@@ -13,8 +14,10 @@ function makeFaceCard(name, profile){
     "src", 
     profile ? `https://image.tmdb.org/t/p/w500/${profile}` : emptyPersonImg
   );
+  cardCharName.innerHTML = `<p">${position}</p>`;
   cardName.innerHTML = `<p">${name}</p>`;
   cardDiv.appendChild(cardImg);
+  cardDiv.appendChild(cardCharName);
   cardDiv.appendChild(cardName);
   return cardDiv;
 }
@@ -23,7 +26,7 @@ function makeFaceCard(name, profile){
 function makeActorCard(actorData) {
   const actorManager = document.querySelector(".actor-box");
   actorData?.cast.map((actor) => {
-    actorManager.appendChild(makeFaceCard(actor.name, actor.profile_path));
+    actorManager.appendChild(makeFaceCard(actor.name, actor.character,actor.profile_path));
   });
 }
 
@@ -48,7 +51,7 @@ function setMovieDetail() {
   document.querySelector(".movie-star").textContent = movieData.vote_average; // vote average
   document.querySelector(".movie-overview").textContent = movieData.overview; // overview
   // 감독 정보
-  document.querySelector(".movie-director").appendChild(makeFaceCard(movieData.credits.director.name, movieData.credits.director.profile_path))
+  document.querySelector(".movie-director").appendChild(makeFaceCard(movieData.credits.director.name, "director",movieData.credits.director.profile_path))
   // 배우 정보
   makeActorCard(movieData.credits);
 }
