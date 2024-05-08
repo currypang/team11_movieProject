@@ -59,10 +59,10 @@ document.addEventListener(
     const fetchedCredits = [nowPlayingCredits, topRatedCredits, popularCredits, upcomingCredits];
 
     //영화카드 생성
-    makeCard(nowPlaying, "now-playing"); // fetch된 영화의 카드를 생성할 리스트를 id로 선택
-    makeCard(topRated, "top-rated");
-    makeCard(popular, "popular");
-    makeCard(upcoming, "upcoming");
+    makeCard(nowPlaying, "now-playing",nowPlayingCredits); // fetch된 영화의 카드를 생성할 리스트를 id로 선택
+    makeCard(topRated, "top-rated",topRatedCredits);
+    makeCard(popular, "popular",popularCredits);
+    makeCard(upcoming, "upcoming",upcomingCredits);
     //sessionStorage에 저장된 sortKey를 "ascending"로 초기화
     sessionStorage.setItem("sortKey", "ascending");
     //클릭 이벤트를 모두 생성

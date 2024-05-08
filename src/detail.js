@@ -1,12 +1,23 @@
 import { postComment, getComment, deleteComment, reviseComment } from "./comment.js";
+import { genreType, emptyActorImg } from "./constants.js";
 
 // 영화 배우 카드 생성
 function makeActorCard(actorData) {
   const actorManager = document.querySelector(".actor-box");
-  actorData.map((actor) => {
+  actorData.cast.map((actor) => {
     let actorCardDiv = document.createElement("div");
+    let actorCardImg = document.createElement("img"); // 배우 사진
+    let actorCardName = document.createElement("p"); // 배우 이름
+
     actorCardDiv.setAttribute("class", "actor-card");
-    actorCardDiv.innerHTML = `<p">${actor.name}</p>`;
+    actorCardImg.setAttribute("class", "actor-img");
+    actorCardImg.setAttribute(
+      "src", 
+      actor.profile_path ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}` : emptyActorImg
+    );
+    actorCardName.innerHTML = `<p">${actor.name}</p>`;
+    actorCardDiv.appendChild(actorCardImg);
+    actorCardDiv.appendChild(actorCardName);
     actorManager.appendChild(actorCardDiv);
   });
 }
@@ -26,22 +37,15 @@ function setMovieDetail() {
   document.querySelector(".movie-title").textContent = movieData.title;
   // 상세 페이지 영화 세부 정보
   document.querySelector(".movie-release-date").textContent = movieData.release_date; // Release date
-  document.querySelector(".movie-genre").textContent = movieData.genres.map((el) => el.name + " "); // genre
+  let movieGenre="";
+  movieData.genres.map((el) => genreType.map((genreId)=>{if(genreId.id==el)movieGenre += genreId.name+"  "}));
+  document.querySelector(".movie-genre").textContent = movieGenre;// genre
   document.querySelector(".movie-star").textContent = movieData.vote_average; // vote average
   document.querySelector(".movie-overview").textContent = movieData.overview; // overview
-
-  // set actor card
-  let tempData = [
-    { name: "Test Name 1" },
-    { name: "Test Name 2" },
-    { name: "Test Name 3" },
-    { name: "Test Name 3" },
-    { name: "Test Name 3" },
-    { name: "Test Name 3" },
-    { name: "Test Name 3" }
-  ];
-  // need card slider
-  makeActorCard(tempData);
+  // 감독 정보
+  
+  // 배우 정보
+  makeActorCard(movieData.credits);
 }
 
 // Home 버튼
