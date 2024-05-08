@@ -14,35 +14,39 @@ function postComment() {
   // 영문 숫자 조합 8자리 이상
   const reg = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
   const star = document.getElementById("star").value;
-  if (reg.test(password)) {
-    if (!storage[movieId]) {
-      let inputData = {
-        [personId]: {
+  if (text === "" || writer === "" || password === "" || star === "별점선택") {
+    alert("입력되지 않은 정보가 있습니다.");
+  } else {
+    if (reg.test(password)) {
+      if (!storage[movieId]) {
+        let inputData = {
+          [personId]: {
+            name: writer,
+            text: text,
+            password: password,
+            star: star
+          }
+        };
+        localStorage.setItem(movieId, JSON.stringify(inputData));
+        // 저장된 유저 id가 있으면 있으면 데이터를 불러와서, 새로운 입력값(새로운 유저의 이름(key) - 내용,비번(value)값)을 추가 한뒤 localStorage.setItem로 재설정
+      } else {
+        // 해당 페이지의 데이터를 불러옴
+        let currentData = JSON.parse(localStorage.getItem(movieId));
+        // 불러온 데이터에 새로운 입력값 추가
+        currentData[personId] = {
           name: writer,
           text: text,
           password: password,
           star: star
-        }
-      };
-      localStorage.setItem(movieId, JSON.stringify(inputData));
-      // 저장된 유저 id가 있으면 있으면 데이터를 불러와서, 새로운 입력값(새로운 유저의 이름(key) - 내용,비번(value)값)을 추가 한뒤 localStorage.setItem로 재설정
+        };
+        // // json 문자열로 변환해서 로컬 스토리지에 넣기(재설정)
+        localStorage.setItem(movieId, JSON.stringify(currentData));
+      }
+      window.location.reload();
     } else {
-      // 해당 페이지의 데이터를 불러옴
-      let currentData = JSON.parse(localStorage.getItem(movieId));
-      // 불러온 데이터에 새로운 입력값 추가
-      currentData[personId] = {
-        name: writer,
-        text: text,
-        password: password,
-        star: star
-      };
-      // // json 문자열로 변환해서 로컬 스토리지에 넣기(재설정)
-      localStorage.setItem(movieId, JSON.stringify(currentData));
+      alert("패스워드는 영문 숫자 조합 8자리 이상으로 입력해 주세요");
     }
-  } else {
-    alert("패스워드는 영문 숫자 조합 8자리 이상으로 입력해 주세요");
   }
-  window.location.reload();
 }
 
 // 리뷰 불러오기
@@ -60,7 +64,7 @@ function getComment() {
             <div id="text">${parsedData[prob].text}</div>
             <div id="writer">${parsedData[prob].name}</div>
             <div id="review-star">${parsedData[prob].star}</div>
-            <button type="button" class="modi-btn btn btn-secondary update-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
+            <button type="button" class="modi-btn btn btn-secondary update-modal" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 1.8vh">수정</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -84,7 +88,7 @@ function getComment() {
                 </div>
               </div>
             </div>
-            <button type= "submit" class="del-btn btn btn-secondary delete" id="delete">삭제</button>
+            <button type= "submit" class="del-btn btn btn-secondary delete" id="delete" style="font-size: 1.8vh">삭제</button>
           </li>
           `;
     }
@@ -124,19 +128,26 @@ function reviseComment() {
               currentData[id].star = star;
             } else if (star !== "별점수정" && !text) {
               currentData[id].star = star;
-            } else {
+            } else if (star === "별점수정" && text) {
               currentData[id].text = text;
+            } else if (star === "별점수정" && !text) {
+              // do nothing
             }
             localStorage.setItem(movieId, JSON.stringify(currentData));
             window.location.reload();
           });
         });
-      } else {
-        alert("비번이 달라요!");
+      } else if (passPrompt === null) {
         let modalContent = document.querySelector(".modal-dialog");
         let modalBackdrop = document.querySelector(".modal-backdrop");
         modalContent.style.display = "none";
-        // modalBackdrop.style.display = "none";
+        modalBackdrop.remove();
+        window.location.reload();
+      } else {
+        alert("비밀번호가 틀렸습니다.");
+        let modalContent = document.querySelector(".modal-dialog");
+        let modalBackdrop = document.querySelector(".modal-backdrop");
+        modalContent.style.display = "none";
         modalBackdrop.remove();
         window.location.reload();
       }
@@ -160,6 +171,8 @@ function deleteComment() {
         // // 키값 삭제된 로컬스토리지 setItem 메서드로 재생
         localStorage.setItem(movieId, JSON.stringify(currentData));
         window.location.reload();
+      } else if (passPrompt === null) {
+        // do nothing
       } else {
         alert("비밀번호가 틀렸습니다.");
       }
