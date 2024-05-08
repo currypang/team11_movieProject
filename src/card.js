@@ -1,7 +1,7 @@
-export { makeCard };
+export { makeMovieCards };
 
 // 영화카드 생성 함수
-function makeCard(fetchedMovies, listID, fetchedCredits) {
+function makeMovieCards(fetchedMovies, listID, fetchedCredits) {
   //DOM에서 영화 카드를 생성할 리스트 중에 id=listID 인 <ul> 을 선택합니다.
   const movieList = document.getElementById(listID);
   //매개변수로 받은 fetchedMovies라는 영화 목록 array를 탐색합니다.
@@ -18,6 +18,8 @@ function makeCard(fetchedMovies, listID, fetchedCredits) {
             <img src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" />
         </figure>
         <h3>${movie.title}</h3>
+        <h3>${movie.vote_average}</h3>
+        <h3>${movie.release_date}</h3>
     `;
     //위에서 만든 innerCard 템플릿을 <li> 속에 넣습니다.
     movieCard.innerHTML += innerCard;

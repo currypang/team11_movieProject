@@ -6,6 +6,7 @@
     <title>DIVE TO MOVIES</title>
     <script type="module" src="./src/main.js"></script>
     <script type="module" src="./src/slider.js"></script>
+    <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/style.css" />
   </head>
   <body>
@@ -22,43 +23,51 @@
             <option value="cast">cast</option>
           </select>
           <input type="text" id="search-input" placeholder="검색어를 입력하세요" autofocus />
-          <button type="submit" id="search-button">검색</button>
+          <button type="submit" id="search-button">search</button>
         </form>
-        <button id="sortTitleUp">제목 정렬</button>
+        <div class="dropdown-container">
+          <input type="checkbox" id="dropdown-toggle" hidden />
+          <label for="dropdown-toggle">정렬 ▾</label>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item" id="sort-by-title"><a>제목순</a><span></span></li>
+            <li class="dropdown-item" id="sort-by-rating"><a>평점순</a><span></span></li>
+            <li class="dropdown-item" id="sort-by-date"><a>개봉일순</a><span></span></li>
+          </ul>
+        </div>
       </nav>
     </header>
-
     <main>
-      <h2>Now Playing</h2>
+      <img id="titleImg" src="assets/murder.png" />
+      <h2>Now Playing ></h2>
       <div class="movie-container">
         <ul class="flex-container" id="now-playing"></ul>
         <div class="arrow">
-          <button class="prev" id="prevNow" disabled="true">prev</button>
-          <button class="next" id="nextNow">next</button>
+          <button class="prev" id="prevNow" disabled="true"><</button>
+          <button class="next" id="nextNow">></button>
         </div>
       </div>
-      <h2>Popular</h2>
+      <h2>Popular ></h2>
       <div class="movie-container">
         <ul class="flex-container" id="popular"></ul>
         <div class="arrow">
-          <button class="prev" id="prevPopular" disabled="true">prev</button>
-          <button class="next" id="nextPopular">next</button>
+          <button class="prev" id="prevPopular" disabled="true"><</button>
+          <button class="next" id="nextPopular">></button>
         </div>
       </div>
-      <h2>Top Rated</h2>
+      <h2>Top Rated ></h2>
       <div class="movie-container">
         <ul class="flex-container" id="top-rated"></ul>
         <div class="arrow">
-          <button class="prev" id="prevTop" disabled="true">prev</button>
-          <button class="next" id="nextTop">next</button>
+          <button class="prev" id="prevTop" disabled="true"><</button>
+          <button class="next" id="nextTop">></button>
         </div>
       </div>
-      <h2>Upcoming</h2>
+      <h2>Upcoming ></h2>
       <div class="movie-container">
         <ul class="flex-container" id="upcoming"></ul>
         <div class="arrow">
-          <button class="prev" id="prevUp" disabled="true">prev</button>
-          <button class="next" id="nextUp">next</button>
+          <button class="prev" id="prevUp" disabled="true"><</button>
+          <button class="next" id="nextUp">></button>
         </div>
       </div>
     </main>

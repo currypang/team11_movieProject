@@ -1,7 +1,7 @@
 import { fetchMovies, fetchCredits } from "./fetch.js";
-import { makeCard } from "./card.js";
+import { makeMovieCards } from "./card.js";
 import { searchMovies } from "./search.js";
-import { sortMovie } from "./sort.js";
+import { sortByTitle, sortByRating, sortByDate } from "./sort.js";
 import { listUrls, listIDs } from "./constants.js";
 
 // 이벤트 핸들러 생성 함수
@@ -9,7 +9,10 @@ function addEvents(movieLists, creditLists) {
   //이벤트 생성해줄 대상을 각각 할당해주기
   const pageTitle = document.querySelector("#main-title > span");
   const searchForm = document.getElementById("search-form");
-  const sortButton1 = document.getElementById("sortTitleUp");
+  const sortButton1 = document.getElementById("sort-by-title");
+  const sortButton2 = document.getElementById("sort-by-rating");
+  const sortButton3 = document.getElementById("sort-by-date");
+
   //페이지 타이틀에 클릭 이벤트 생성
   pageTitle?.addEventListener("click", (event) => {
     event.preventDefault();
@@ -26,10 +29,24 @@ function addEvents(movieLists, creditLists) {
     //sessionStorage의 "sortKey"라는 key를 가진 저장소에서 오름차순/내림차순에 대한 값을 가져옴
     const prevSortKey = sessionStorage.getItem("sortKey");
     //각 영화 리스트 각각을 prevSortKey에 따라 오름차순/내림차순 정렬
-    listIDs.forEach((listID) => sortMovie(listID, prevSortKey));
+    listIDs.forEach((listID) => sortByTitle(listID, prevSortKey));
     //nextSortKey에 prevSortKey와 반대 값을 할당 ("ascending" <--> "descending")
     const nextSortKey = prevSortKey === "ascending" ? "descending" : "ascending";
     //sessionStorage에 저장된 prevSortKey 값을 nextSortKey로 변경 (클릭할 때마다 오름차순/내림차순 번갈아가며 적용하기 위함)
+    sessionStorage.setItem("sortKey", nextSortKey);
+  });
+  sortButton2?.addEventListener("click", (event) => {
+    event.preventDefault();
+    const prevSortKey = sessionStorage.getItem("sortKey");
+    listIDs.forEach((listID, index) => sortByRating(movieLists[index], creditLists[index], listID, prevSortKey));
+    const nextSortKey = prevSortKey === "ascending" ? "descending" : "ascending";
+    sessionStorage.setItem("sortKey", nextSortKey);
+  });
+  sortButton3?.addEventListener("click", (event) => {
+    event.preventDefault();
+    const prevSortKey = sessionStorage.getItem("sortKey");
+    listIDs.forEach((listID, index) => sortByDate(movieLists[index], creditLists[index], listID, prevSortKey));
+    const nextSortKey = prevSortKey === "ascending" ? "descending" : "ascending";
     sessionStorage.setItem("sortKey", nextSortKey);
   });
 }
@@ -42,7 +59,7 @@ async function initialize() {
   const creditLists = await Promise.all(movieLists.map(fetchCredits));
   //영화카드 생성
   listIDs.forEach((listID, index) => {
-    makeCard(movieLists[index], listID, creditLists[index]);
+    makeMovieCards(movieLists[index], listID, creditLists[index]);
   });
   //sessionStorage에 저장된 sortKey를 오름차순(ascending order)으로 초기화
   sessionStorage.setItem("sortKey", "ascending");
