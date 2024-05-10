@@ -1,5 +1,5 @@
 import { fetchMovies, fetchCredits } from "./fetch.js";
-import { makeMovieCards } from "./card.js";
+import { createCardsInList } from "./card.js";
 import { searchMovies } from "./search.js";
 import { sortByTitle, sortByRating, sortByDate } from "./sort.js";
 import { listUrls, listIDs } from "./constants.js";
@@ -67,7 +67,7 @@ async function initialize() {
   const creditLists = await Promise.all(movieLists.map(fetchCredits));
   //영화카드 생성
   listIDs.forEach((listID, index) => {
-    makeMovieCards(movieLists[index], listID, creditLists[index]);
+    createCardsInList(movieLists[index], listID, creditLists[index]);
   });
   //sessionStorage에 저장된 sortKey를 오름차순(ascending order)으로 초기화
   sessionStorage.setItem("sortKey", "ascending");
