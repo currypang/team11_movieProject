@@ -9,6 +9,8 @@ function addEvents(movieLists, creditLists) {
   //이벤트 생성해줄 대상을 각각 할당해주기
   const pageTitle = document.querySelector("#main-title > span");
   const searchForm = document.getElementById("search-form");
+  const searchInput = document.getElementById("search-input");
+  const cancelInput = document.getElementById("cancel-input");
   const sortButton1 = document.getElementById("sort-by-title");
   const sortButton2 = document.getElementById("sort-by-rating");
   const sortButton3 = document.getElementById("sort-by-date");
@@ -17,6 +19,12 @@ function addEvents(movieLists, creditLists) {
   pageTitle?.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.reload();
+  });
+  //검색 입력창 취소 버튼에 클릭 이벤트 생성
+  cancelInput?.addEventListener("click", (event) => {
+    event.preventDefault();
+    searchInput.focus();
+    searchInput.value = "";
   });
   //검색 버튼에 클릭 이벤트 생성
   searchForm?.addEventListener("submit", (event) => {

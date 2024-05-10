@@ -3,11 +3,16 @@ export { fetchMovies, fetchCredits };
 
 // 영화 정보 fetch 함수
 async function fetchMovies(listName) {
-  //await로 fetch 함수가 영화 데이터를 다 불러올 때까지 기다리고 난뒤, then을 통해 Promise의 response를 json형태로 반환하도록 처리합니다.
-  const response = await fetch(baseUrl + listName, options).then((response) => response.json());
-  //response의 json 객체 중에 "results" 라는 key의 value만 저장합니다.
-  const fetchedMovies = response.results;
-  //fetchedMovies에 저장된 영화 데이터 목록을 반환합니다. (Array type)
+  let fetchedMovies = [];
+  const pages = [1, 2];
+  for (const page of pages) {
+    //await로 fetch 함수가 영화 데이터를 다 불러올 때까지 기다리고 난뒤, response에 저장한다.
+    const response = await fetch(baseUrl + listName + "?language=en-US&page=" + page, options);
+    const data = await response.json();
+    //response의 json 객체 중에 "results" 라는 key의 value만 저장합니다.
+    fetchedMovies.push(...data.results);
+    //fetchedMovies에 저장된 영화 데이터 목록을 반환합니다. (Array type)
+  }
   return fetchedMovies;
 }
 
