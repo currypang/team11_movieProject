@@ -1,103 +1,134 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+/********************        global        ********************/
 html {
-  background-color: black;
+  background-color: rgb(7, 7, 7);
   color: white;
   /* 스크롤시 부드럽게 내려감 */
   scroll-behavior: smooth;
+}
+button {
+  all: unset;
+}
+button:hover {
+  cursor: pointer;
 }
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   font-style: normal;
 }
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
 
+/********************        header        ********************/
 header {
   display: flex;
-  font-size: 11vh;
-  margin: 1% auto 5% auto;
+  height: 40vh;
   position: relative;
   z-index: 1;
+  font-size: 11vmin;
 }
 header > #main-title {
-  margin-left: 5%;
-  padding-top: 2%;
-  margin-bottom: 5%;
+  margin: 2% auto 5% 5%;
 }
 header > #main-title > span:hover {
   cursor: pointer;
 }
-/* navigation bar */
+/*****     search tool     *****/
 nav {
-  margin-left: 40vw;
-  width: 90%;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  width: 40vw;
   height: 7vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 3;
 }
-#search-form {
-  display: flex;
-}
 #search-option {
-  height: 3.43vh;
-  padding-left: 8%;
+  width: 7vw;
+  height: 3.5vh;
+  text-align: center;
   font-size: 15%;
+  border: none;
 }
 #search-input {
-  width: 14vw;
-  height: 2.6vh;
+  width: 20vw;
+  height: 3.2vh;
   border: none;
-  padding-left: 3dvb;
-  padding-top: 1%;
-  margin-top: 0.2%;
+  padding-left: 1.5vw;
 }
 #search-input::placeholder {
   color: rgb(158, 158, 158);
 }
-#search-button {
-  width: 4.8vw;
-  height: 3.53vh;
-  font-size: 18%;
-  padding-left: 4%;
-  background-color: rgb(190, 38, 38);
+#cancel-input {
+  width: 2.3vw;
+  height: 3.5vh;
+  text-align: center;
+  font-size: 2.5vh;
+  background-color: white;
+  color: rgb(158, 158, 158);
 }
+#search-button {
+  width: 2.2vw;
+  height: 3.5vh;
+  text-align: center;
+  background-color: rgb(236, 4, 4);
+  opacity: 90%;
+}
+#search-icon {
+  width: 55%;
+  height: 60%;
+}
+/*****     sort tool     *****/
 .dropdown-container {
-  width: 4.8vw;
-  height: 3.53vh;
-  font-size: 17%;
-  display: flex;
+  width: 5vw;
+  height: 3.5vh;
+  font-size: 14%;
   position: relative;
-  align-items: center;
-  cursor: pointer;
-  background-color: rgb(83, 83, 83);
+  background-color: rgb(47, 47, 47);
+  opacity: 90%;
 }
 .dropdown-container > label {
   margin: 0px auto 0px auto;
+  cursor: pointer;
 }
 #dropdown-toggle:checked ~ .dropdown-menu {
-  /* 리스트 보이기 */
-  overflow-x: hidden;
-  overflow-y: auto;
   opacity: 1;
   max-height: 10vh;
 }
 .dropdown-menu {
-  font-size: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1vh 0;
+  gap: 1vh;
+  font-size: 100%;
+  width: 100%;
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
-  margin-top: 2px;
   background-color: whitesmoke;
   color: black;
-  gap: 1vw;
-  /* 리스트 안 보이게 하기 */
   overflow: hidden;
+  /* 리스트 안 보이게 하기 */
   max-height: 0;
   opacity: 0;
-  transition: 0.2s;
-  padding: 1px;
+  transition: 0.1s;
+}
+.dropdown-item:hover {
+  cursor: pointer;
+}
+/********************        main        ********************/
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8vh;
+  padding-bottom: 12vh;
 }
 #titleImg {
   position: absolute;
@@ -105,50 +136,43 @@ nav {
   left: 0;
   width: 100%;
   height: 50%;
-  z-index: 0;
+  z-index: -1;
   opacity: 30%;
 }
-h2 {
-  color: rgb(237, 235, 235);
-  font-size: 2.7vw;
-  margin: 2% 0 0 5%;
-  z-index: 3;
-  position: relative;
-}
-
-.movie-container {
-  position: relative;
-  width: 88vw;
-  height: 45vh;
-  margin: 0 auto;
+/*****     list section     *****/
+section {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+.list-title {
+  color: rgb(240, 240, 240);
+  font-size: 2vw;
+  padding-left: 1vw;
+  margin-bottom: 2vh;
+  z-index: 3;
+}
+/*****     cards + arrows in a list     *****/
+.cards-container {
+  position: relative;
+  /* width = 6 cards * (card width 11vw + gap 2vw) */
+  width: 78vw;
+  height: calc(11vw * 1.7);
   /* 넘치는 카드 가리기 */
   overflow: hidden;
 }
-
-/* flex 사용 */
-.flex-container {
+/*****     cards in a list     *****/
+.cards-container > ul {
   display: flex;
-  align-items: flex-start;
   position: absolute;
   left: 0;
-  top: 0;
-  width: 86vw;
-  padding: 0;
-  /* 가로 정랼 */
-  float: left;
-  bottom: 30;
-  margin-top: 3%;
+  gap: 2vw;
+  margin-left: 1vw;
 }
-/* 넓이 지정을 통해 한줄당 나열될 카드 수 지정 */
+/*****     each card     *****/
 .card {
   top: 15;
-  width: 10.2vw;
-  height: 34vh;
-  /* 카드수 수정은 마진으로 */
-  margin: 0 0.5vw;
-  text-align: center;
+  width: 11vw;
+  height: calc(11vw * 1.5);
   border-radius: 0.3%;
   list-style-type: none;
   /* 호버시 작동시간 */
@@ -163,11 +187,12 @@ h2 {
   border-color: aqua;
 }
 .image-box img {
-  width: 10.2vw;
-  height: 30vh;
+  width: 11vw;
+  height: calc(11vw * 1.5);
   border-radius: 0.5vw;
-  /* margin-top: 1rem; */
+  object-fit: cover;
 }
+/*****     슬라이드 버튼     *****/
 .arrow {
   position: absolute;
   display: flex;
@@ -177,38 +202,19 @@ h2 {
   font-size: 4vw;
   z-index: 4;
 }
-/* 버튼 양쪽에 배치 */
 .prev {
+  opacity: 70%;
   float: left;
 }
 .next {
+  opacity: 70%;
   float: right;
 }
 .prev:hover {
-  opacity: 70%;
-  transform: scale(1.3);
+  opacity: 100%;
+  transform: scale(1.1);
 }
 .next:hover {
-  opacity: 70%;
-  transform: scale(1.3);
-}
-
-#content {
-  padding: 1rem 1rem 1rem 1rem;
-}
-
-#none {
-  display: none;
-}
-
-#block {
-  display: block;
-}
-
-button {
-  all: unset;
-}
-
-.modal-text {
-  background-color: white;
+  opacity: 100%;
+  transform: scale(1.1);
 }
