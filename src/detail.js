@@ -1,37 +1,7 @@
-import { postComment, getComment, deleteComment, reviseComment } from "./comment.js";
+import { postComment, getComment, deleteComment, updateComment } from "./comment.js";
 import { genreType, emptyPersonImg } from "./constants.js";
 
-const label = document.querySelectorAll(".movie-rating .rating__label");
-const labelLength = label.length;
 let stars = document.querySelectorAll(".movie-rating .star-icon");
-
-// Actor 카드 Drag scroll
-function cardDrager() {
-  const slider = document.querySelector(".actor-box");
-  console.log(slider);
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    slider.classList.add("active");
-  });
-
-  slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    slider.classList.remove("active");
-  });
-
-  slider.addEventListener("mouseup", () => {
-    isDown = false;
-    slider.classList.remove("active");
-  });
-
-  slider.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-  });
-}
 
 // 인물 카드 생성
 function makeFaceCard(name, position, profile) {
@@ -45,8 +15,8 @@ function makeFaceCard(name, position, profile) {
   cardCharName.setAttribute("class", "actor-char-name");
   cardName.setAttribute("class", "actor-name");
   cardImg.setAttribute("src", profile ? `https://image.tmdb.org/t/p/w500/${profile}` : emptyPersonImg);
-  cardCharName.innerHTML = `<p">${position}</p>`;
-  cardName.innerHTML = `<p">${name}</p>`;
+  cardCharName.innerHTML = `<p>${position}</p>`;
+  cardName.innerHTML = `<p>${name}</p>`;
   cardDiv.appendChild(cardImg);
   cardDiv.appendChild(cardCharName);
   cardDiv.appendChild(cardName);
@@ -97,27 +67,53 @@ function setHomeBtn() {
   });
 }
 
+// Actor 카드 Drag scroll
+function cardDrager() {
+  const slider = document.querySelector(".actor-box");
+  console.log(slider);
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.addEventListener("mousedown", (e) => {
+    isDown = true;
+    slider.classList.add("active");
+  });
+
+  slider.addEventListener("mouseleave", () => {
+    isDown = false;
+    slider.classList.remove("active");
+  });
+
+  slider.addEventListener("mouseup", () => {
+    isDown = false;
+    slider.classList.remove("active");
+  });
+
+  slider.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+  });
+}
+
+// 평점을 별로 바꾸기
+function ratingToStars(rating) {
+  //반올림
+  const rounded = Math.round(rating);
+  //별 채우기(반 개씩 채움)
+  for (let i = 0; i <= rounded; i++) {
+    stars[i].classList.add("filled");
+  }
+}
+
+// Initiate
 document.addEventListener("DOMContentLoaded", async () => {
   setHomeBtn(); // 홈버튼
   setMovieDetail(); // 영화 상세 정보
 
   // 리뷰 컨텐츠
-  const button = document.getElementById("register-review");
-  button.addEventListener("click", postComment);
+  const submitBtn = document.getElementById("submit-button");
+  submitBtn.addEventListener("click", postComment);
   getComment();
-  reviseComment();
+  updateComment();
   deleteComment();
 });
-
-function ratingToStars(rating) {
-  const rounded = Math.round(rating);
-  filledRate(rounded, labelLength);
-}
-
-function filledRate(index, length) {
-  if (index <= length) {
-    for (let i = 0; i <= index; i++) {
-      stars[i].classList.add("filled");
-    }
-  }
-}

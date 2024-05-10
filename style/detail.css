@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-/********************        unique        ********************/
+/********************        global        ********************/
 html {
   scroll-behavior: smooth;
 }
@@ -40,6 +40,7 @@ nav {
   gap: 5vw;
   font-weight: 100;
 }
+/***   영화 포스터   ***/
 .top > figure {
   height: 90%;
 }
@@ -47,6 +48,7 @@ nav {
   height: 100%;
   object-fit: cover;
 }
+/***   영화 정보  ***/
 .movie-data {
   display: flex;
   flex-direction: column;
@@ -57,6 +59,7 @@ nav {
 .movie-title {
   font-size: 150%;
 }
+/***   평점을 별로 바꾸기   ***/
 .rating__input {
   display: none; /* 라디오버튼 hide */
 }
@@ -80,6 +83,7 @@ nav {
 .rating__label--full .star-icon {
   background-position: right;
 }
+/***   감독 정보   ***/
 .movie-director {
   height: 90%;
   display: flex;
@@ -92,19 +96,24 @@ nav {
   justify-content: center;
   height: 55vh;
 }
+/***   슬라이드 담을 박스  ***/
 .actors-container {
   position: relative;
   height: 100%;
   overflow: auto;
 }
+/***   배우 카드 리스트   ***/
 .actor-list {
-  height: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   flex-direction: row;
   gap: 1.2vw;
   position: absolute;
   left: 0;
 }
+/***   배우 카드   ***/
 .actor-card {
   display: flex;
   flex-direction: column;
@@ -114,6 +123,7 @@ nav {
   gap: 1vh;
   font-size: 1vw;
 }
+/***   배우 카드 정보   ***/
 .actor-img {
   width: 10vw;
   height: 15vw;
@@ -130,63 +140,92 @@ nav {
   display: flex;
   flex-direction: column;
   min-height: 50vh;
-  gap: 3vh;
+  gap: 2vh;
 }
+/***   리뷰 입력란 전체   ***/
 .review-input-form {
   width: 50vw;
 }
+/***   리뷰 입력란 첫째줄   ***/
 .input-group {
   width: 100%;
 }
 #input-writer {
   width: 25%;
+  font-size: 90%;
 }
 #input-password {
   width: 40%;
+  font-size: 90%;
 }
 #select-stars {
   width: 20%;
+  font-size: 90%;
+  color: rgb(80, 80, 80);
 }
-#register-review {
+#input-comment {
+  width: 100%;
+  font-size: 88%;
+}
+#submit-button {
   width: 10%;
+  font-size: 90%;
 }
-#text {
-  width: 60%;
-  background-color: #383838;
+/***   정렬 버튼 그룹   ***/
+.sort-buttons {
+  width: 50vw;
+  display: flex;
+  justify-content: end;
+  gap: 0.5vw;
 }
+#sort-button-by-rate {
+  font-size: 90%;
+}
+#sort-button-by-time {
+  font-size: 90%;
+}
+/***   작성된 리뷰 리스트   ***/
 #review-list {
   display: flex;
   flex-direction: column;
   width: 50vw;
   gap: 1vh;
+  margin-bottom: 5vh;
 }
+/***   리뷰 한 개    ***/
 .review {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 50vw;
-  gap: 0.1vw;
-  padding: 1vh 0 1vh 1vw;
-  font-size: 2vh;
+  gap: 0.2vw;
+  padding: 1vh 0.5vw 1vh 1vw;
+  font-size: 90%;
   background-color: #383838;
   border-radius: 1vh;
 }
+/***   리뷰 내용   ***/
 .text {
-  width: 50%;
+  width: 60%;
 }
+/***   리뷰 작성자  ***/
 .writer {
-  width: 30%;
+  width: 20%;
   text-align: center;
 }
+/***   리뷰 별점   ***/
 .review-star {
   width: 20%;
   text-align: center;
 }
+/***   수정 및 삭제 버튼   ***/
 .edit-btn {
   width: 7%;
+  font-size: 70%;
 }
 .del-btn {
   width: 7%;
+  font-size: 70%;
 }
 
 /********************        common        ********************/
@@ -195,9 +234,4 @@ nav {
 }
 .section-title {
   font-size: 2.5vw;
-}
-.flex-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

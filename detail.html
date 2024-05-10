@@ -72,39 +72,43 @@
     </section>
     <section class="middle section">
       <p class="section-title">ACTOR LIST</p>
-      <div class="actors-container"><ul class="actor-list flex-container"></ul></div>
+      <div class="actors-container"><ul class="actor-list"></ul></div>
     </section>
     <section class="bottom section">
       <p class="section-title">REVIEW</p>
       <form class="review-input-form">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Username" aria-label="Username" id="input-writer" />
+          <input type="text" class="form-control" placeholder="작성자" aria-label="Username" id="input-writer" />
           <input
             class="form-control"
-            placeholder="password: 영문 숫자 조합 8자리 이상"
+            placeholder="비밀번호 (영문, 숫자 포함 8자리 이상)"
             aria-label="Server"
             id="input-password"
             type="password"
           />
           <select class="form-select" id="select-stars">
-            <option selected>별점선택</option>
+            <option selected>별점 선택</option>
             <option value="⭐">⭐</option>
             <option value="⭐⭐">⭐⭐</option>
             <option value="⭐⭐⭐">⭐⭐⭐</option>
             <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
             <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
           </select>
-          <button type="button" class="btn btn-primary review-btn" id="register-review">리뷰 등록</button>
+          <button type="button" class="btn btn-primary" id="submit-button">리뷰 등록</button>
         </div>
-        <div class="review-input-box input-group">
+        <div class="input-group">
           <textarea
             class="form-control"
             placeholder="리뷰 내용"
             aria-label="With textarea"
-            id="input-review"
+            id="input-comment"
           ></textarea>
         </div>
       </form>
+      <div class="sort-buttons">
+        <button type="button" class="btn btn-outline-light" id="sort-button-by-rate">평점순</button>
+        <button type="button" class="btn btn-outline-light" id="sort-button-by-time">최신순</button>
+      </div>
       <ul class="mt-3" id="review-list"></ul>
     </section>
     <script

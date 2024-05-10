@@ -1,5 +1,4 @@
 import { options, baseUrl } from "./constants.js";
-export { fetchMovies, fetchCredits };
 
 // 영화 정보 fetch 함수
 async function fetchMovies(listName) {
@@ -37,3 +36,5 @@ function fetchCredits(fetchedMovies) {
   });
   return credits;
 }
+
+export { fetchMovies, fetchCredits };

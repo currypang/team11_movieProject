@@ -1,5 +1,3 @@
-export { options, baseUrl, listUrls, listIDs, genreType, emptyPersonImg };
-
 // option for fetching movie data using TMDB's open API
 const options = {
   method: "GET",
@@ -100,3 +98,5 @@ const genreType = [
     name: "Western"
   }
 ];
+
+export { options, baseUrl, listUrls, listIDs, genreType, emptyPersonImg };

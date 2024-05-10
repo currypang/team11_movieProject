@@ -1,4 +1,3 @@
-export { setupSlideNavigation };
 const setupSlideNavigation = ({ slidesSelector, prevBtnSelector, nextBtnSelector }) => {
   const slides = document.querySelector(slidesSelector);
   const prevBtn = document.querySelector(prevBtnSelector);
@@ -56,3 +55,5 @@ const slideData = [
 slideData.forEach((data) => {
   setupSlideNavigation(data);
 });
+
+export { setupSlideNavigation };
