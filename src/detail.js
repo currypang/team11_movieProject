@@ -1,6 +1,10 @@
 import { postComment, getComment, deleteComment, reviseComment } from "./comment.js";
 import { genreType, emptyPersonImg } from "./constants.js";
 
+const label = document.querySelectorAll(".movie-rating .rating__label");
+const labelLength = label.length;
+let stars = document.querySelectorAll(".movie-rating .star-icon");
+
 // Actor 카드 Drag scroll
 function cardDrager() {
   const slider = document.querySelector(".actor-box");
@@ -51,7 +55,7 @@ function makeFaceCard(name, position, profile) {
 
 // 인물 리스트 생성
 function makeActorCard(actorData) {
-  const actorManager = document.querySelector(".actor-box");
+  const actorManager = document.querySelector(".actor-list");
   actorData?.cast.map((actor) => {
     actorManager.appendChild(makeFaceCard(actor.name, actor.character, actor.profile_path));
   });
@@ -62,11 +66,8 @@ function setMovieDetail() {
   // input center movie data
   let movieData = JSON.parse(sessionStorage.getItem("TARGET_MOVIE_DATA"));
   document
-    .querySelector(".movie-img")
-    .setAttribute(
-      "style",
-      `background-image: url("https://image.tmdb.org/t/p/w500/${movieData.poster_path}"); height: 90%; aspect-ratio: 2/3;`
-    );
+    .querySelector(".movie-poster")
+    .setAttribute("src", "https://image.tmdb.org/t/p/w500/" + movieData.poster_path);
 
   // 상세 페이지 영화 제목
   document.querySelector(".movie-title").textContent = movieData.title;
@@ -79,7 +80,7 @@ function setMovieDetail() {
     })
   );
   document.querySelector(".movie-genre").textContent = movieGenre; // genre
-  document.querySelector(".movie-rating").textContent = movieData.vote_average; // vote average
+  ratingToStars(movieData.vote_average); // vote average
   document.querySelector(".movie-overview").textContent = movieData.overview; // overview
   // 감독 정보
   document
@@ -91,7 +92,7 @@ function setMovieDetail() {
 
 // Home 버튼
 function setHomeBtn() {
-  document.getElementById("home-btn-id").addEventListener("click", function () {
+  document.getElementById("home-button").addEventListener("click", function () {
     window.location.href = "./index.html";
   });
 }
@@ -101,9 +102,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   setMovieDetail(); // 영화 상세 정보
 
   // 리뷰 컨텐츠
-  const button = document.getElementById("button");
+  const button = document.getElementById("register-review");
   button.addEventListener("click", postComment);
   getComment();
   reviseComment();
   deleteComment();
 });
+
+function ratingToStars(rating) {
+  const rounded = Math.round(rating);
+  filledRate(rounded, labelLength);
+}
+
+function filledRate(index, length) {
+  if (index <= length) {
+    for (let i = 0; i <= index; i++) {
+      stars[i].classList.add("filled");
+    }
+  }
+}

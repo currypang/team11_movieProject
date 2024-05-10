@@ -15,71 +15,98 @@
     <link rel="stylesheet" href="./style/detail.css" />
   </head>
   <body>
-    <div class="background-test">
-      <nav class="top flex-container">
-        <button id="home-btn-id" class="home-btn-class">HOME</button>
-      </nav>
-      <div class="center-movie">
-        <figure id="movie-poster" class="movie-img"></figure>
-        <div class="movie-data">
-          <p class="movie-title"></p>
-          <p class="movie-release-date"></p>
-          <p class="movie-genre" style="padding: 0 1vw"></p>
-          <p class="movie-rating" style="padding: 1vh 0"></p>
-          <p class="movie-overview"></p>
+    <nav>
+      <button id="home-button">HOME</button>
+    </nav>
+    <section class="top section">
+      <figure><img class="movie-poster" /></figure>
+      <div class="movie-data">
+        <p class="movie-title"></p>
+        <p class="movie-release-date"></p>
+        <p class="movie-genre"></p>
+        <div class="movie-rating">
+          <label class="rating__label rating__label--half" for="starhalf">
+            <input type="radio" id="starhalf" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
+          <label class="rating__label rating__label--full" for="star1">
+            <input type="radio" id="star1" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
+          <label class="rating__label rating__label--half" for="starhalf">
+            <input type="radio" id="starhalf" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
+          <label class="rating__label rating__label--full" for="star1">
+            <input type="radio" id="star1" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
+          <label class="rating__label rating__label--half" for="starhalf">
+            <input type="radio" id="starhalf" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
+          <label class="rating__label rating__label--full" for="star1">
+            <input type="radio" id="star1" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
+          <label class="rating__label rating__label--half" for="starhalf">
+            <input type="radio" id="starhalf" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
+          <label class="rating__label rating__label--full" for="star1">
+            <input type="radio" id="star1" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
+          <label class="rating__label rating__label--half" for="starhalf">
+            <input type="radio" id="starhalf" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
+          <label class="rating__label rating__label--full" for="star1">
+            <input type="radio" id="star1" class="rating__input" name="rating" value="" />
+            <span class="star-icon"></span>
+          </label>
         </div>
-        <div class="movie-director"></div>
+        <p class="movie-overview"></p>
       </div>
-      <!-- <div class="center-actor"></div> -->
-      <div class="bottom">
-        <section>
-          <div class="actor-box-title">ACTOR LIST</div>
-          <div class="actor-box flex-container"></div>
-        </section>
-        <section class="review-box">
-          <div class="review-box-title">REVIEW</div>
-          <div></div>
-        </section>
-      </div>
-    </div>
-    <div class="comment-section flex-container">
-      <div class="row">
-        <div id="review-input">
-          <form id="comment-box">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username" id="input-writer" />
-              <span class="input-group-text"></span>
-              <input
-                class="form-control"
-                placeholder="password: 영문 숫자 조합 8자리 이상"
-                aria-label="Server"
-                id="password"
-                type="password"
-              />
-            </div>
-            <div class="review-input-box input-group">
-              <!-- <span class="input-group-text">With textarea</span> -->
-              <textarea
-                class="form-control"
-                placeholder="리뷰 내용"
-                aria-label="With textarea"
-                id="input-review"
-              ></textarea>
-            </div>
-            <select class="form-select" id="star">
-              <option selected>별점선택</option>
-              <option value="⭐">⭐</option>
-              <option value="⭐⭐">⭐⭐</option>
-              <option value="⭐⭐⭐">⭐⭐⭐</option>
-              <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-              <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
-            </select>
-            <button type="button" class="btn btn-secondary review-btn" id="button">리뷰 쓰기</button>
-          </form>
+      <div class="movie-director"></div>
+    </section>
+    <section class="middle section">
+      <p class="section-title">ACTOR LIST</p>
+      <div class="actors-container"><ul class="actor-list flex-container"></ul></div>
+    </section>
+    <section class="bottom section">
+      <p class="section-title">REVIEW</p>
+      <form class="review-input-form">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username" id="input-writer" />
+          <input
+            class="form-control"
+            placeholder="password: 영문 숫자 조합 8자리 이상"
+            aria-label="Server"
+            id="input-password"
+            type="password"
+          />
+          <select class="form-select" id="select-stars">
+            <option selected>별점선택</option>
+            <option value="⭐">⭐</option>
+            <option value="⭐⭐">⭐⭐</option>
+            <option value="⭐⭐⭐">⭐⭐⭐</option>
+            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+          </select>
+          <button type="button" class="btn btn-primary review-btn" id="register-review">리뷰 등록</button>
         </div>
-        <ul class="mt-3" id="review-list"></ul>
-      </div>
-    </div>
+        <div class="review-input-box input-group">
+          <textarea
+            class="form-control"
+            placeholder="리뷰 내용"
+            aria-label="With textarea"
+            id="input-review"
+          ></textarea>
+        </div>
+      </form>
+      <ul class="mt-3" id="review-list"></ul>
+    </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

@@ -7,13 +7,13 @@ const movieId = sessionStorage.getItem("MOVIE_ID");
 function postComment() {
   const text = document.getElementById("input-review").value;
   const writer = document.getElementById("input-writer").value;
-  const password = document.getElementById("password").value;
+  const password = document.getElementById("input-password").value;
   const personId = crypto.randomUUID(); // 고유 ID
   // 로컬 스토리지 - { 영화 ID : { 고유ID(유저) : {name: 유저이름 text: 리뷰내용, password: 비번, star: 별점 } } } 형식으로 저장
   // 로컬 스토리지에 저장된 유저 id 값 없으면 생성과 동시에 데이터 삽입 - json parse 한 스토리지는 undefiend에 접근불가. 접근하고 난뒤 parse해서 이용
   // 영문 숫자 조합 8자리 이상
   const reg = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
-  const star = document.getElementById("star").value;
+  const star = document.getElementById("select-stars").value;
   if (text === "" || writer === "" || password === "" || star === "별점선택") {
     alert("입력되지 않은 정보가 있습니다.");
   } else {
@@ -51,7 +51,7 @@ function postComment() {
 
 // 리뷰 불러오기
 function getComment() {
-  const list = document.querySelector("#review-list");
+  const list = document.getElementById("review-list");
   let dom = "";
   if (storage[movieId]) {
     let parsedData = JSON.parse(storage[movieId]);
@@ -60,11 +60,11 @@ function getComment() {
       dom =
         dom +
         `
-          <li class="comment" id=${prob}> 
-            <div id="text">${parsedData[prob].text}</div>
-            <div id="writer">${parsedData[prob].name}</div>
-            <div id="review-star">${parsedData[prob].star}</div>
-            <button type="button" class="modi-btn btn btn-secondary update-modal" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 1.8vh">수정</button>
+          <li class="review" id=${prob}> 
+            <div class="text">${parsedData[prob].text}</div>
+            <div class="writer">${parsedData[prob].name}</div>
+            <div class="review-star">${parsedData[prob].star}</div>
+            <button type="button" class="edit-btn btn btn-secondary update-modal" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 1.8vh">수정</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
