@@ -40,7 +40,7 @@ function movieCardClick(event, movie, credits) {
 }
 
 //
-function makeMovieCards(fetchedMovies, listID, credits) {
+function createCardsInList(fetchedMovies, listID, credits) {
   //페이지에서 영화 카드를 생성할 리스트를 listID로 선택
   const movieCardList = document.getElementById(listID);
   //fetchedMovies라는 영화 리스트를 돌면서
@@ -51,4 +51,4 @@ function makeMovieCards(fetchedMovies, listID, credits) {
   });
 }
 
-export { makeMovieCards };
+export { createCardsInList };
