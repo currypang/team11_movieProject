@@ -1,4 +1,4 @@
-// option for fetching movie data using TMDB's open API
+// option for fetching movie data using TMDB's open API.
 const options = {
   method: "GET",
   headers: {
